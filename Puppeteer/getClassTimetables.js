@@ -1,6 +1,14 @@
 const puppeteer = require('puppeteer');
 const {JSDOM} = require("jsdom");
 const getClassesList = require("./getClassesList");
+const fs = require('fs');
+const {addClassTimetable, addTeacherSchedule} = require("../Firebase/Functions");
+const {
+  extractAllTeachers,
+  transformSchedule,
+  extractInfo,
+  extractTeacherSchedule
+} = require("../Functions/DataManipulation");
 
 const getClassTimetable = async (classes = []) => {
   const browser = await puppeteer.launch();
@@ -57,20 +65,25 @@ const getClassTimetable = async (classes = []) => {
       data.push(rowData);
     });
     timeTables[classes[i]] = data;
+    await addClassTimetable(transformSchedule(data), classes[i]);
   }
-  // console.log(data)
-  // Close the browser
+  const teacherSchedule = extractTeacherSchedule(timeTables);
+  try {
+    fs.writeFileSync('./Data/timeTables.json', JSON.stringify(timeTables));
+    console.log('timeTables.json saved');
+    fs.writeFileSync('./Data/teacherSchedule.json', JSON.stringify(teacherSchedule));
+    console.log('teacherSchedule.json saved');
+  } catch (err) {
+    console.log(err);
+  }
+  // for (const teacher of Object.keys(teacherSchedule)) {
+  //   await addTeacherSchedule(teacherSchedule[teacher], teacher);
+  // }
+
+
   await browser.close();
-  return timeTables;
 };
 
-function extractInfo(str) {
-  let info = str.split('<br>');
-  let subject = info[0];
-  let classRoom = info[1];
-  let teacher = info[2].split('<b>')[1].split('</b>')[0];
-  return {subject, classRoom, teacher};
-}
 
 module.exports = getClassTimetable;
 
