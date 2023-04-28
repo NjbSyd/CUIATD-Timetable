@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const {JSDOM} = require("jsdom");
 const getClassesList = require("./getClassesList");
-const fs = require('fs');
+// const fs = require('fs');
 const {addClassTimetable, addTeacherSchedule} = require("../Firebase/Functions");
 const {
   extractAllTeachers,
@@ -68,19 +68,19 @@ const getClassTimetable = async (classes = []) => {
     await addClassTimetable(transformSchedule(data), classes[i]);
   }
   const teacherSchedule = extractTeacherSchedule(timeTables);
-  try {
-    fs.writeFileSync('./Data/timeTables.json', JSON.stringify(timeTables));
-    console.log('timeTables.json saved');
-    fs.writeFileSync('./Data/teacherSchedule.json', JSON.stringify(teacherSchedule));
-    console.log('teacherSchedule.json saved');
-  } catch (err) {
-    console.log(err);
+  console.log(teacherSchedule)
+  for (const teacher in teacherSchedule) {
+    await addTeacherSchedule(teacherSchedule[teacher], teacher);
+    console.log(teacher)
   }
-  // for (const teacher of Object.keys(teacherSchedule)) {
-  //   await addTeacherSchedule(teacherSchedule[teacher], teacher);
+  // try {
+  //   fs.writeFileSync('./Data/timeTables.json', JSON.stringify(timeTables));
+  //   console.log('timeTables.json saved');
+  //   fs.writeFileSync('./Data/teacherSchedule.json', JSON.stringify(teacherSchedule));
+  //   console.log('teacherSchedule.json saved');
+  // } catch (err) {
+  //   console.log(err);
   // }
-
-
   await browser.close();
 };
 

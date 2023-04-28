@@ -33,7 +33,7 @@ function extractTeacherSchedule(data) {
 // Helper function to get the day name based on index
 function getDayName(index) {
   const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  return daysOfWeek[index];
+  return daysOfWeek[index-1];
 }
 
 
