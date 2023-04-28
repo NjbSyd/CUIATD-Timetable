@@ -9,7 +9,7 @@ const addClassTimetable = async (data, className) => {
 }
 
 const addTeacherSchedule = async (data, teacherName) => {
-  await db.collection('TeacherSchedule').doc(teacherName).set(data).then(() => {
+  await db.collection('TeacherSchedule').doc(teacherName).set({data}).then(() => {
     console.log('Teacher Schedule added', teacherName);
   }).catch((err) => {
     console.log(err);
