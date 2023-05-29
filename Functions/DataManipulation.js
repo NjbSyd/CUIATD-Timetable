@@ -27,6 +27,13 @@ function extractTeacherSchedule(data) {
       }
     }
   });
+  // Sort the schedule array for each teacher by day
+  Object.keys(teacherSchedule).forEach((teacherName) => {
+    teacherSchedule[teacherName].sort((a, b) => {
+      const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      return daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day);
+    });
+  });
   return teacherSchedule;
 }
 
