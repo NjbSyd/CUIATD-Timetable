@@ -44,88 +44,6 @@ function getDayName(index) {
 }
 
 
-function findClassName(schedule) {
-  let data = [];
-  for (const className in schedule) {
-    for (const classObj of schedule[className]) {
-      if (classObj["13:35 to 14:20"] &&
-          classObj["13:35 to 14:20"]["classRoom"].includes("Z218")) {
-        data.push({className, day: classObj["Day"]})
-      }
-    }
-  }
-  data = [...new Set(data)]
-  return data;
-}
-
-function extractAllSubjects(data) {
-  let subjects = [];
-  Object.values(data).forEach((week) => {
-    week.forEach((day) => {
-      Object.values(day).forEach((slot) => {
-        if (slot !== null && typeof slot === "object" && "subject" in slot) {
-          subjects.push(slot.subject);
-        }
-      });
-    });
-  });
-  subjects = [...new Set(subjects)]
-  return subjects;
-}
-
-function extractAllTeachers(data) {
-  let teachers = [];
-  Object.values(data).forEach((week) => {
-    week.forEach((day) => {
-      Object.values(day).forEach((slot) => {
-        if (slot !== null && typeof slot === "object" && "teacher" in slot) {
-          teachers.push(slot.teacher);
-        }
-      });
-    });
-  });
-  teachers = [...new Set(teachers)]
-  return teachers;
-}
-
-function noOfClasses(JsonData, reqDay) {
-  let no = 0;
-  Object.keys(JsonData).map((key, index) => {
-    JsonData[key].forEach((day) => {
-      if (day.Day === reqDay) {
-        Object.values(day).forEach((slot) => {
-          if (slot !== null && typeof slot === "object" && "teacher" in slot)
-            no++;
-        });
-      }
-    })
-  })
-  console.log(no)
-}
-
-function extractAllClassRooms(data) {
-  let classRooms = [];
-  Object.values(data).forEach((week) => {
-    week.forEach((day) => {
-      Object.values(day).forEach((slot) => {
-        if (slot !== null && typeof slot === "object" && "classRoom" in slot) {
-          classRooms.push(slot.classRoom);
-        }
-      });
-    });
-  });
-  classRooms = [...new Set(classRooms)]
-  classRooms.sort((a, b) => {
-    if (a > b) {
-      return 1;
-    } else if (a < b) {
-      return -1;
-    } else {
-      return 0;
-    }
-  });
-  return classRooms;
-}
 
 //transform daily schedule of a class, remove saturday and undefined
 function transformSchedule(schedule) {
@@ -154,9 +72,4 @@ module.exports = {
   extractInfo,
   transformSchedule,
   extractTeacherSchedule,
-  findClassName,
-  extractAllSubjects,
-  extractAllTeachers,
-  extractAllClassRooms,
-  noOfClasses
 };
