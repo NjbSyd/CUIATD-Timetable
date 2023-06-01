@@ -22,17 +22,5 @@ const addTeacherSchedule = async (data, teacherName) => {
     });
 };
 
-const addRoughData = async (data) => {
-  await db
-    .collection("RoughData")
-    .doc("RoughData")
-    .set(data)
-    .then(() => {
-      console.log("Rough Data added");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
 
-module.exports = { addClassTimetable, addTeacherSchedule, addRoughData };
+module.exports = { addClassTimetable, addTeacherSchedule};

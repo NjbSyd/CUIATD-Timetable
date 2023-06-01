@@ -1,14 +1,11 @@
 const puppeteer = require("puppeteer");
 const { JSDOM } = require("jsdom");
 const getClassesList = require("./getClassesList");
-// const fs = require('fs');
 const {
   addClassTimetable,
   addTeacherSchedule,
-  addRoughData,
 } = require("../Firebase/Functions");
 const {
-  extractAllTeachers,
   transformSchedule,
   extractInfo,
   extractTeacherSchedule,
@@ -80,7 +77,6 @@ const getClassTimetable = async (classes = []) => {
     await addTeacherSchedule(teacherSchedule[teacher], teacher);
   }
   console.log(Object.keys(teacherSchedule).length + " teachers added");
-  await addRoughData(timeTables);
   await browser.close();
 };
 
