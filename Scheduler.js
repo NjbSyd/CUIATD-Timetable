@@ -7,8 +7,10 @@ const ExtractData = async () => {
 
   try {
     await getClassTimetable([]);
+    console.log("success")
+    storeLogs(false,"Scrapping completed Succesfully")
   } catch (error) {
-    storeLogs(error.name, error.message);
+    storeLogs(true, error.message);
   }
 };
 
