@@ -1,16 +1,9 @@
 const fs = require("fs");
 
-exports.storeLogs = (errorName, errorMessage) => {
+exports.storeLogs = (isError, errorMessage) => {
   try {
-    const date = new Date();
-    const log = `
-        Date:${date.getDay()}:${date.getMonth() + 1}:${date.getFullYear()}
-        Time:${date.getHours()}:${date.getMinutes()} :${date.getSeconds()}
-        ErrorName:  ${errorName}
-        Message: ${errorMessage}
-        ---------------------------------------------------------------------------------
-        `;
-
+  
+    const log = `${isError?"Failure":"Success"}: ${new Date()}: ${errorMessage} \n `;
     fs.appendFileSync("./Logs.txt", log);
   } catch (error) {
     console.log(error);
