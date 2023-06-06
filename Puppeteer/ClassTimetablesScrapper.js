@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
-const { JSDOM } = require("jsdom");
-const getClassesList = require("./getClassesList");
+const {JSDOM} = require("jsdom");
+const fs = require("fs");
+const classesListScrapper = require("./ClassesListScrapper");
 const {
   addClassTimetable,
   addTeacherSchedule,
@@ -11,7 +12,18 @@ const {
   extractTeacherSchedule,
 } = require("../Functions/DataManipulation");
 
-const getClassTimetable = async (classes = []) => {
+// let cancelRequest = false;
+//
+// function setCancelRequest(value) {
+//   cancelRequest = value;
+// }
+//
+// function getCancelRequest() {
+//   return cancelRequest;
+// }
+
+const scrapClassTimetable = async (classes = []) => {
+  let timeTables = {};
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -20,9 +32,8 @@ const getClassTimetable = async (classes = []) => {
     await page.goto("https://cuonline.cuiatd.edu.pk/Timetable/Timetable.aspx");
     await page.waitForSelector('[name="ddlClasses"]');
 
-    let timeTables = {};
     if (classes.length === 0) {
-      classes = await getClassesList();
+      classes = await classesListScrapper();
     }
     for (let i = 0; i < classes.length; i++) {
       console.log(classes[i]);
@@ -32,8 +43,8 @@ const getClassTimetable = async (classes = []) => {
 
       // Extract the table HTML content and output it to the console
       const tableHtml = await page.$eval(
-        "#gvTimeTable1",
-        (table) => table.outerHTML
+          "#gvTimeTable1",
+          (table) => table.outerHTML
       );
 
       const dom = new JSDOM(tableHtml);
@@ -72,16 +83,20 @@ const getClassTimetable = async (classes = []) => {
       timeTables[classes[i]] = data;
       await addClassTimetable(transformSchedule(data), classes[i]);
     }
-    console.log(Object.keys(timeTables).length + " classes added");
+    fs.writeFileSync("./Output/Timetable.json", JSON.stringify(timeTables));
     const teacherSchedule = extractTeacherSchedule(timeTables);
+    console.log(Object.keys(timeTables).length + " classes added");
     for (const teacher in teacherSchedule) {
+      console.log(teacher)
       await addTeacherSchedule(teacherSchedule[teacher], teacher);
     }
     console.log(Object.keys(teacherSchedule).length + " teachers added");
     await browser.close();
   } catch (error) {
-    throw error;
+    fs.writeFileSync("./Output/Timetable.json", JSON.stringify(timeTables));
+    throw new Error(error.message);
   }
 };
 
-module.exports = getClassTimetable;
+module.exports = {scrapClassTimetable};
+
