@@ -1,0 +1,12 @@
+Success: Tue Jun 06 2023 18:55:05 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Failure: Tue Jun 06 2023 18:55:05 GMT+0500 (Pakistan Standard Time): Cannot set headers after they are sent to the client
+Success: Tue Jun 06 2023 18:57:46 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 18:58:17 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 18:58:55 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 19:01:02 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 19:01:26 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 19:01:51 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Failure: Tue Jun 06 2023 19:06:10 GMT+0500 (Pakistan Standard Time): The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object
+Success: Tue Jun 06 2023 19:07:14 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 19:07:42 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully!
+Success: Tue Jun 06 2023 19:35:13 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully

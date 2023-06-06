@@ -1,10 +1,9 @@
-const corn = require("node-cron");
 const {storeLogs} = require("./StoreLogs");
-const getClassTimetable = require("../Puppeteer/getClassTimetables");
+const {scrapClassTimetable} = require("../Puppeteer/ClassTimetablesScrapper");
 
 const ExtractData = async () => {
   try {
-    await getClassTimetable();
+    await scrapClassTimetable();
     storeLogs(false,"Scrapping completed Successfully")
   } catch (error) {
     storeLogs(true, error.message);
