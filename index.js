@@ -1,6 +1,7 @@
 const express = require('express');
 const getClassTimetable = require("./Puppeteer/getClassTimetables");
 const addClassTimetable = require("./Firebase/Functions");
+const ExtractData = require("./Scheduler");
 const app = express();
 
 app.use(express.json());
@@ -17,5 +18,8 @@ app.get('/', async (req, res) => {
     return res.status(500).send('Server Error');
   }
 
+
+  
 });
 
+ExtractData();
