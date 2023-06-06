@@ -13,9 +13,7 @@ const {
 
 const getClassTimetable = async (classes = []) => {
   try {
-    const browser = await puppeteer.launch({
-      headless: "new",
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     // Navigate to the website and wait for it to load
