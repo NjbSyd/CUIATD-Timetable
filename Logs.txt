@@ -1,0 +1,4 @@
+Failure: Sat Jun 03 2023 14:55:41 GMT+0500 (Pakistan Standard Time): Navigation timeout of 30000 ms exceeded 
+ Failure: Sat Jun 03 2023 14:56:12 GMT+0500 (Pakistan Standard Time): net::ERR_NAME_NOT_RESOLVED at https://cuonline.cuiatd.edu.pk/Timetable/Timetable.aspx 
+ Success: Sat Jun 03 2023 15:05:27 GMT+0500 (Pakistan Standard Time): Scrapping completed Succesfully 
+ 
