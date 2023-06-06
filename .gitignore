@@ -107,5 +107,4 @@ dist
 .idea
 
 # Output
-Output/
 package-lock.json

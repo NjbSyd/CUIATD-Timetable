@@ -14,20 +14,14 @@ app.get('/', async (req, res) => {
   const {classes} = req.body;
   try {
     const data = getClassesTimetableFromLocalJSON(classes);
+    if (typeof data === "string")
+      return res.status(500).send(data);
+    else
       return res.status(200).send(data);
   } catch (err) {
-      return res.status(500).send(err.message);
+    return res.status(500).send(err.message);
   }
 });
 
-// app.get('/cancel', async (req, res) => {
-//   const {auth, id} = req.body;
-//   if (auth === "123456789") {
-//     activeRequests[id].status(200).send("Cancelled");
-//     setCancelRequest(true);
-//     delete activeRequests[id];
-//     return res.status(200).send("Cancelled");
-//   }
-// });
 
 cron.schedule("30 1 * * *", ExtractData);
