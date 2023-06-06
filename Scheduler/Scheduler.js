@@ -4,7 +4,7 @@ const getClassTimetable = require("../Puppeteer/getClassTimetables");
 
 const ExtractData = async () => {
   try {
-    await getClassTimetable(["BSE 6A"]);
+    await getClassTimetable();
     storeLogs(false,"Scrapping completed Successfully")
   } catch (error) {
     storeLogs(true, error.message);
