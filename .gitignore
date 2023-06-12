@@ -73,6 +73,7 @@ typings/
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
+# puppeteer cache
 .cache
 
 # Next.js build output
@@ -106,5 +107,7 @@ dist
 # Webstorm config files
 .idea
 
+# MongoDB config
+MongoDB/MongoConfig.js
 # Output
 package-lock.json
