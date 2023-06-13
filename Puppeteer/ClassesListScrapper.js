@@ -1,8 +1,11 @@
 const puppeteer = require("puppeteer");
 
-const classesListScrapper = async () => {
+/*
+ extracts the list of classes from the website
+ @returns an Array: ["BSE 6A", "BSE 6B", ...]
+ */
+const CourseSemesterSectionScrapper = async () => {
   try {
-
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     // Navigate to the website and wait for it to load
@@ -15,4 +18,4 @@ const classesListScrapper = async () => {
     throw new Error(error.message);
   }
 }
-module.exports = classesListScrapper;
+module.exports = CourseSemesterSectionScrapper;
