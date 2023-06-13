@@ -107,7 +107,7 @@ dist
 # Webstorm config files
 .idea
 
-# MongoDB config
-MongoDB/MongoConfig.js
 # Output
 package-lock.json
+
+model

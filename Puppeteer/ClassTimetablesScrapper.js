@@ -1,31 +1,21 @@
 const puppeteer = require("puppeteer");
 const {JSDOM} = require("jsdom");
 const fs = require("fs");
-const classesListScrapper = require("./ClassesListScrapper");
-const {
-  addClassTimetable,
-  addTeacherSchedule,
-} = require("../Firebase/Functions");
-const {
-  transformSchedule,
-  extractInfo,
-  extractTeacherSchedule,
-} = require("../Functions/DataManipulation");
+const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
+const {extractInfo} = require("../Functions/DataManipulation");
 
-// let cancelRequest = false;
-//
-// function setCancelRequest(value) {
-//   cancelRequest = value;
-// }
-//
-// function getCancelRequest() {
-//   return cancelRequest;
-// }
 
+/*
+ * extracts the timetable of the given classes
+ * @param classes an array of classes to extract timetable of. If not provided, it will extract timetable of all classes
+ * @returns JSON - { [ { { },...},...],...}
+ * */
 const scrapClassTimetable = async (classes = []) => {
   let timeTables = {};
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: "new",
+    });
     const page = await browser.newPage();
 
     // Navigate to the website and wait for it to load
@@ -33,19 +23,16 @@ const scrapClassTimetable = async (classes = []) => {
     await page.waitForSelector('[name="ddlClasses"]');
 
     if (classes.length === 0) {
-      classes = await classesListScrapper();
+      classes = await CourseSemesterSectionScrapper();
     }
-    for (let i = 0; i < classes.length; i++) {
-      console.log(classes[i]);
+    for (let classNo = 0; classNo < classes.length; classNo++) {
+      console.log(classes[classNo]);
       // Change the select element to "BSE 6A" and fire the onchange event
-      await page.select('[name="ddlClasses"]', classes[i]);
+      await page.select('[name="ddlClasses"]', classes[classNo]);
       await page.waitForSelector("#gvTimeTable1");
 
       // Extract the table HTML content and output it to the console
-      const tableHtml = await page.$eval(
-          "#gvTimeTable1",
-          (table) => table.outerHTML
-      );
+      const tableHtml = await page.$eval("#gvTimeTable1", (table) => table.outerHTML);
 
       const dom = new JSDOM(tableHtml);
       const table = dom.window.document.querySelector("table");
@@ -78,23 +65,17 @@ const scrapClassTimetable = async (classes = []) => {
             k++;
           }
         });
-        data.push(rowData);
+        if (Object.keys(rowData).length > 0 && rowData["Day"] !== "Saturday") {
+          data.push(rowData);
+        }
       });
-      timeTables[classes[i]] = data;
-      await addClassTimetable(transformSchedule(data), classes[i]);
+      timeTables[classes[classNo]] = data;
     }
-    fs.writeFileSync("./Output/Timetable.json", JSON.stringify(timeTables));
-    const teacherSchedule = extractTeacherSchedule(timeTables);
-    console.log(Object.keys(timeTables).length + " classes added");
-    for (const teacher in teacherSchedule) {
-      console.log(teacher)
-      await addTeacherSchedule(teacherSchedule[teacher], teacher);
-    }
-    console.log(Object.keys(teacherSchedule).length + " teachers added");
     await browser.close();
+    return timeTables;
   } catch (error) {
-    fs.writeFileSync("./Output/Timetable.json", JSON.stringify(timeTables));
-    throw new Error(error.message);
+    console.log(error);
+    return timeTables;
   }
 };
 
