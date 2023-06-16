@@ -1,5 +1,61 @@
-//Extracts the teacher schedule from the scrapped timetable data
 
+// Extracts data in the format of from the scrapped timetable data in the given format
+
+/*
+
+  {
+    "class_name": "RMB 5M",
+    "day": "Friday",
+    "time_slot": "11:40 to 12:25",
+    "subject": "Issues in Brand Management",
+    "class_room": "A220",
+    "teacher": " Dr. Mohammad Ali"
+  },
+
+*/
+
+function extractTimetableData(timetableData) {
+   // Define an empty array to store the extracted data
+   const extractedData = [];
+ 
+  
+   for (const class_name of Object.keys(timetableData)) {
+ 
+    const classData = timetableData[class_name];
+ 
+ 
+ 
+     for (const dayData of Object.keys(classData[0]).length ===0?classData.slice(1):classData) {
+       const day = dayData['Day'];
+ 
+       for (const [timeSlot, details] of Object.entries(dayData).slice(1)) {
+         if (details) {
+           const subject = details['subject'];
+           const classRoom = details['classRoom'];
+           const teacher = details['teacher'];
+ 
+           const extractedObject = {
+             class_name: class_name,
+             day: day,
+             time_slot: timeSlot,
+             subject: subject,
+             class_room: classRoom,
+             teacher: teacher,
+           };
+           extractedData.push(extractedObject);
+         }
+       }
+     }
+   }
+ 
+ 
+ return extractedData;
+ }
+
+
+
+
+//Extracts the teacher schedule from the scrapped timetable data
 function extractTeacherSchedule(data) {
    const teacherSchedule = {};
    Object.keys(data).forEach((className) => {
@@ -149,7 +205,8 @@ module.exports = {
    extractTeacherSchedule,
    extractSubjectData,
    extractClassrooms,
-   extractActualTimetable
+   extractActualTimetable,
+   extractTimetableData,
 };
 
 
