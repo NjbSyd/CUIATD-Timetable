@@ -1,36 +1,37 @@
 const {storeLogs} = require("./StoreLogs");
 const {scrapClassTimetable} = require("../Puppeteer/ClassTimetablesScrapper");
 const cron = require("node-cron");
+const {addSchedule} =require("../MongoDB/StoreDataInDb");
+
+
+
+
 const {
-   extractTeacherSchedule,
-   extractSubjectData,
-   extractClassrooms,
-   extractActualTimetable
+   extractTimetableData
+
 } = require("../Functions/DataManipulation");
-const {ConnectToMongoDB, AddManyDocuments, DisconnectFromMongo} = require("../MongoDB/MongoDB_Functions");
 
-const ExtractData = async (classes = []) => {
+const ExtractData = async () => {
    try {
-      const Timetables = await scrapClassTimetable();
-      const Teachers = extractTeacherSchedule(Timetables);
-      const Subjects = extractSubjectData(Timetables);
-      const Classrooms = extractClassrooms(Timetables);
-      const ActualTimetable = extractActualTimetable(Timetables);
 
-      await ConnectToMongoDB();
-      await AddManyDocuments("Teachers", Teachers);
-      await AddManyDocuments("Subjects", Subjects);
-      await AddManyDocuments("ExtraData", Classrooms);
-      await AddManyDocuments("ActualTimetable", ActualTimetable);
-      await DisconnectFromMongo();
+      console.log("Scrapping Started")
+      const Timetables = await scrapClassTimetable();
+      const ActualTimetable = extractTimetableData(Timetables);
+      const promises = ActualTimetable.map(async (schedule) => {
+         await  addSchedule(schedule);
+       });
+       await Promise.all(promises);
       storeLogs(false, "Scrapping completed Successfully")
    } catch (error) {
+      console.log(error);
       storeLogs(true, error.message);
    }
 };
 
 const ScheduleCronJob = () => {
    cron.schedule("30 1 * * *", ExtractData);
+   ExtractData();
 }
+
 
 module.exports = ScheduleCronJob;
