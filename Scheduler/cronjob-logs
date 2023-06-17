@@ -27,4 +27,4 @@ Success: Thu Jun 15 2023 15:00:23 GMT+0500 (Pakistan Standard Time): Scrapping c
  Success: Fri Jun 16 2023 18:58:33 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully
  Success: Fri Jun 16 2023 19:01:07 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully
  Success: Fri Jun 16 2023 19:31:46 GMT+0500 (Pakistan Standard Time): Scrapping completed Successfully
- 
+ Failure: Fri Jun 16 2023 23:21:43 GMT+0500 (Pakistan Standard Time): connect ETIMEDOUT 34.93.199.68:27017

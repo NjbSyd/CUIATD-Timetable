@@ -1,51 +1,44 @@
 const TimeTable = require('../Models/TimeTable');
 
 
-
 exports.addSchedule = async (schedule) => {
 
 
-
-
-    try {
+  try {
 /// search the doc  by class_name and day and time_slot
 
 
-const filter = { class_name: schedule.class_name, day: schedule.day, time_slot: schedule.time_slot };
+    const filter = {class_name: schedule.class_name, day: schedule.day, time_slot: schedule.time_slot};
 
 
+    const existingDocInDb = await TimeTable.findOne(filter);
 
-const existingDocInDb=await TimeTable.findOne(filter);
+    if (existingDocInDb) {
 
-        if(existingDocInDb){
+      // update the doc if found
 
-            // update the doc if found
+      const update = {$set: {subject: schedule.subject, class_room: schedule.class_room, teacher: schedule.teacher}};
 
-            const update = { $set: { subject: schedule.subject, class_room: schedule.class_room, teacher: schedule.teacher } };
+      await TimeTable.updateOne(filter, update);
 
-            await TimeTable.updateOne(filter, update);
+      console.log('Class schedule updated successfully');
+    } else {
 
-            console.log('Class schedule updated successfully');
-        }
+      // create a new doc if not found
 
-else{
+      const newSchedule = new TimeTable(schedule);
 
-    // create a new doc if not found
+      await newSchedule.save();
 
-    const newSchedule = new TimeTable(schedule);
-
-    await newSchedule.save();
-
-    console.log('New class schedule created successfully');
-}
-        
-
-
-    } catch (error) {
-
-        
-throw error;
-
+      console.log('New class schedule created successfully');
     }
+
+
+  } catch (error) {
+
+
+    throw error;
+
+  }
 
 }
