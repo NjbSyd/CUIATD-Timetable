@@ -1,22 +1,33 @@
-require('dotenv').config();
-const mongoose=require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 
-const connectToMongoDB = async () => {
-    console.log(process.env.MONGO_URI)
-    try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,  
-        });
-        console.log("Connected to MongoDB");
-    } catch (error) {
-        console.log(error);
-    }
-}
+const connectToMongoDatabase = async () => {
+  const MongoURI = process.env.MONGO_URI.replace(
+    "<credentials-placeholder>",
+    `${encodeURI(process.env.MONGO_USERNAME)}:${encodeURI(
+      process.env.MONGO_PASSWORD
+    )}`
+  ).replace("<Database-name>", `${encodeURI(process.env.MONGO_DATA_DATABASE)}`);
+  try {
+    await mongoose.connect(MongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
 
+const disconnectFromMongoDatabase = async () => {
+  try {
+    await mongoose.connection.close();
+    console.log("Disconnected from MongoDB Data Database");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-
-module.exports = {connectToMongoDB};
-
-
+module.exports = {
+  connectToMongoDatabase,
+  disconnectFromMongoDatabase,
+};
