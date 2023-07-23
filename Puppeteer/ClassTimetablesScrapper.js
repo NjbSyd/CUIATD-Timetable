@@ -1,9 +1,9 @@
 const puppeteer = require("puppeteer");
-const {JSDOM} = require("jsdom");
+const { JSDOM } = require("jsdom");
 const fs = require("fs");
 const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
-const {extractInfo} = require("../Functions/DataManipulation");
-
+const { extractInfo } = require("../Functions/DataManipulation");
+const cheerio = require("cheerio");
 
 /*
  * extracts the timetable of the given classes
@@ -31,28 +31,31 @@ const scrapClassTimetable = async (classes = []) => {
       await page.select('[name="ddlClasses"]', classes[classNo]);
       await page.waitForSelector("#gvTimeTable1");
 
-      // Extract the table HTML content and output it to the console
-      const tableHtml = await page.$eval("#gvTimeTable1", (table) => table.outerHTML);
+      // Extract the table HTML content and use Cheerio for parsing
+      const tableHtml = await page.$eval(
+        "#gvTimeTable1",
+        (table) => table.outerHTML
+      );
+      const $ = cheerio.load(tableHtml);
 
-      const dom = new JSDOM(tableHtml);
-      const table = dom.window.document.querySelector("table");
-      const header = table.querySelectorAll("th");
+      const header = $("th");
       const time = [];
-      header.forEach((col, i) => {
-        if (i > 0) time.push(col.textContent);
+      header.each((i, col) => {
+        if (i > 0) time.push($(col).text());
       });
-      const rows = table.querySelectorAll("tr");
+
+      const rows = $("tr");
       const data = [];
-      rows.forEach((row) => {
-        const cols = row.querySelectorAll("td");
+      rows.each((_, row) => {
+        const cols = $(row).find("td");
         const rowData = {};
         let k = 0;
-        cols.forEach((col, i) => {
+        cols.each((i, col) => {
           if (i === 0) {
-            rowData["Day"] = col.textContent;
-          } else if (col.innerHTML.split("<br>").length > 1) {
-            const info = extractInfo(col.innerHTML.toString());
-            if (col.colSpan > 1) {
+            rowData["Day"] = $(col).text();
+          } else if ($(col).html().split("<br>").length > 1) {
+            const info = extractInfo($(col).html().toString());
+            if ($(col).attr("colspan") > 1) {
               rowData[time[k]] = info;
               rowData[time[k + 1]] = info;
               k += 2;
@@ -79,5 +82,4 @@ const scrapClassTimetable = async (classes = []) => {
   }
 };
 
-module.exports = {scrapClassTimetable};
-
+module.exports = { scrapClassTimetable };
