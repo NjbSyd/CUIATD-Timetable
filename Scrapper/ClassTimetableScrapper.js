@@ -1,45 +1,41 @@
-const puppeteer = require("puppeteer");
+const { chromium } = require("playwright");
 const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
 const { extractInfo } = require("../Functions/DataManipulation");
 const cheerio = require("cheerio");
 
-/*
- * extracts the timetable of the given classes
- * @param classes an array of classes to extract timetable of. If not provided, it will extract timetable of all classes
- * @returns JSON - { [ { { },...},...],...}
- * */
 const scrapClassTimetable = async (classes = []) => {
   let timeTables = {};
   try {
-    const browser = await puppeteer.launch({
-      headless: "new",
-    });
+    const browser = await chromium.launch({ headless: true }); // Use headless: false if you want to see the browser UI
     const page = await browser.newPage();
 
-    // Navigate to the website and wait for it to load
     await page.goto("https://cuonline.cuiatd.edu.pk/Timetable/Timetable.aspx");
     await page.waitForSelector('[name="ddlClasses"]');
 
     if (classes.length === 0) {
       classes = await CourseSemesterSectionScrapper();
     }
+
     for (let classNo = 0; classNo < classes.length; classNo++) {
       console.log(classes[classNo]);
-      // Change the select element to "BSE 6A" and fire the onchange event
-      await page.select('[name="ddlClasses"]', classes[classNo]);
+      await page.selectOption('[name="ddlClasses"]', classes[classNo]);
       await page.waitForSelector("#gvTimeTable1");
 
-      // Extract the table HTML content and use Cheerio for parsing
-      const tableHtml = await page.$eval(
-        "#gvTimeTable1",
-        (table) => table.outerHTML
-      );
+      // Extract the entire table HTML content
+      let tableHtml = await page.innerHTML("#gvTimeTable1");
+      tableHtml =
+        '<table class="table1" cellspacing="0" rules="all" border="2" id="gvTimeTable1" style="color:Black;border-color:#000000;border-width:2px;border-style:solid;font-\n' +
+        'family:Arial;font-size:Small;width:99%;border-collapse:collapse;table-layout: fixed;">\n' +
+        "                " +
+        tableHtml +
+        "</table>";
+
       const $ = cheerio.load(tableHtml);
 
-      const header = $("th");
+      const header = $("th:not(:first-child)");
       const time = [];
       header.each((i, col) => {
-        if (i > 0) time.push($(col).text());
+        time.push($(col).text());
       });
 
       const rows = $("tr");
@@ -72,6 +68,7 @@ const scrapClassTimetable = async (classes = []) => {
       });
       timeTables[classes[classNo]] = data;
     }
+
     await browser.close();
     return timeTables;
   } catch (error) {
