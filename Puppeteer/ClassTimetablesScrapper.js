@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
 const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
 const { extractInfo } = require("../Functions/DataManipulation");
 const cheerio = require("cheerio");
