@@ -2,6 +2,7 @@ const ScheduleCronJob = require("./Scheduler/Scheduler");
 const express = require("express");
 const { connectToMongoDatabase } = require("./MongoDB/MongoConfig");
 const app = express();
+
 app.use(express.json());
 
 app.use("/timetable", require("./Routes/TimetableData"));
