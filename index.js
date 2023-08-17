@@ -7,6 +7,7 @@ app.use(express.json());
 
 app.use("/timetable", require("./Routes/TimetableData"));
 app.use("/quotes", require("./Routes/Quotes"));
+app.use("/web", require("./Routes/WebRoutes"));
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server Started on port 3000");
