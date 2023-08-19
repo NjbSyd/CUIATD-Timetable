@@ -120,12 +120,37 @@ function organizeFreeSlotsByDay(freeSlotsByRoom) {
   return organizedSlots;
 }
 
+// Sorts the free slots data by day and room
+function sortFreeSlotsData(data) {
+  const sortedData = {};
+
+  // Sort days of the week in order (Monday to Friday)
+  const sortedDays = Object.keys(data).sort((a, b) => {
+    const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    return daysOrder.indexOf(a) - daysOrder.indexOf(b);
+  });
+
+  for (const day of sortedDays) {
+    sortedData[day] = {};
+
+    // Sort room names alphabetically within each day
+    const roomsData = data[day];
+    const sortedRooms = Object.keys(roomsData).sort();
+
+    for (const room of sortedRooms) {
+      sortedData[day][room] = roomsData[room];
+    }
+  }
+  return sortedData;
+}
+
 //export the functions to be used in other files
 module.exports = {
   extractInfo,
   findFreeSlots,
   extractTimetableData,
   organizeFreeSlotsByDay,
+  sortFreeSlotsData,
 };
 
 /*
