@@ -5,6 +5,7 @@ const { GetAllData } = require("../MongoDB/RequestHandler");
 const {
   findFreeSlots,
   organizeFreeSlotsByDay,
+  sortFreeSlotsData,
 } = require("../Functions/DataManipulation");
 
 freeSlotsRouter.get("/", async (req, res) => {
@@ -12,7 +13,8 @@ freeSlotsRouter.get("/", async (req, res) => {
     const response = await GetAllData();
     const freeSlots = findFreeSlots(response);
     const freeSlotsByDay = organizeFreeSlotsByDay(freeSlots);
-    res.status(200).json(freeSlotsByDay);
+    const sortedFreeSlotsByDay = sortFreeSlotsData(freeSlotsByDay);
+    res.status(200).json(sortedFreeSlotsByDay);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
