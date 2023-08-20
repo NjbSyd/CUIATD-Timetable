@@ -25,5 +25,4 @@ const ScheduleCronJob = () => {
   cron.schedule("30 1 * * *", ExtractData);
   console.log("Cron Job Scheduled at : 1:30 AM everyday");
 };
-
 module.exports = ScheduleCronJob;
