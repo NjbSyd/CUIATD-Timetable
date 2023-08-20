@@ -2,17 +2,16 @@
 
 /*
 
-  {
-    "class_name": "RMB 5M",
-    "day": "Friday",
-    "time_slot": "11:40 to 12:25",
-    "subject": "Issues in Brand Management",
-    "class_room": "A220",
-    "teacher": " Dr. Mohammad Ali"
-  },
+ {
+ "class_name": "RMB 5M",
+ "day": "Friday",
+ "time_slot": "11:40 to 12:25",
+ "subject": "Issues in Brand Management",
+ "class_room": "A220",
+ "teacher": " Dr. Mohammad Ali"
+ },
 
-*/
-
+ */
 function extractTimetableData(timetableData) {
   // Define an empty array to store the extracted data
   const extractedData = [];
@@ -48,164 +47,110 @@ function extractTimetableData(timetableData) {
   return extractedData;
 }
 
-//Extracts the teacher schedule from the scrapped timetable data
-function extractTeacherSchedule(data) {
-  const teacherSchedule = {};
-  Object.keys(data).forEach((className) => {
-    for (let i = 0; i < data[className].length; i++) {
-      const dayData = data[className][i];
-      const dayName = dayData["Day"];
-      if (Object.keys(dayData).length === 0) {
-        continue;
+// Finds the free slots in the timetable data
+function findFreeSlots(timetableData) {
+  const allTimeSlots = [
+    "08:00 to 09:30",
+    "09:40 to 11:10",
+    "11:20 to 12:50",
+    "13:40 to 15:10",
+    "15:20 to 16:50",
+    "17:00 to 18:30",
+    "18:30 to 20:00",
+    "20:00 to 21:30",
+  ];
+
+  const freeSlotsByRoom = {};
+
+  for (const entry of timetableData) {
+    const { class_name, day, time_slot, class_room } = entry;
+
+    if (class_room) {
+      if (!freeSlotsByRoom[class_room]) {
+        freeSlotsByRoom[class_room] = {};
       }
-      for (const timeSlot in dayData) {
-        if (dayData[timeSlot] !== null) {
-          const teacherName = dayData[timeSlot].teacher;
-          const className1 = className;
-          if (!teacherSchedule[teacherName]) {
-            teacherSchedule[teacherName] = { _id: teacherName, schedule: [] };
-          }
-          teacherSchedule[teacherName].schedule.push({
-            className: className1,
-            day: dayName, // Add the day name to the teacher's schedule
-            timeSlot,
-            classRoom: dayData[timeSlot].classRoom,
-            subject: dayData[timeSlot].subject,
-          });
-        }
+
+      if (!freeSlotsByRoom[class_room][day]) {
+        freeSlotsByRoom[class_room][day] = [];
       }
-    }
-  });
-  delete teacherSchedule.undefined;
-  // Sort the schedule array for each teacher by day
-  Object.keys(teacherSchedule).forEach((teacherName) => {
-    teacherSchedule[teacherName].schedule.sort((a, b) => {
-      const daysOfWeek = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-      ];
-      return daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day);
-    });
-  });
 
-  return Object.values(teacherSchedule).map((teacher) => ({
-    _id: teacher._id,
-    schedule: teacher.schedule,
-  }));
-}
-
-//Extracts the subject data from the scrapped timetable data
-function extractSubjectData(timetable) {
-  const subjectData = [];
-
-  for (const classKey in timetable) {
-    const course = classKey;
-    const schedule = timetable[classKey];
-
-    for (const day of schedule) {
-      for (const timeSlotKey in day) {
-        const timeSlot = day[timeSlotKey];
-
-        if (timeSlot && timeSlot.subject) {
-          const subject = timeSlot.subject;
-          const teacher = timeSlot.teacher;
-
-          const existingSubject = subjectData.find(
-            (data) => data.subject === subject && data.teacher === teacher
-          );
-
-          if (existingSubject) {
-            if (!existingSubject.courses.includes(course)) {
-              existingSubject.courses.push(course);
-            }
-          } else {
-            subjectData.push({
-              subject,
-              teacher,
-              courses: [course],
-            });
-          }
-        }
-      }
+      freeSlotsByRoom[class_room][day].push(time_slot);
     }
   }
 
-  subjectData.forEach((data) => {
-    const subjectInitials = data.subject.split(" ").map((word) => word[0]);
-    const teacherInitials = data.teacher.split(" ").map((word) => word[0]);
-    data._id = [...teacherInitials, ...subjectInitials].join("");
-  });
+  const freeRoomSlots = {};
 
-  return subjectData;
-}
+  for (const room in freeSlotsByRoom) {
+    freeRoomSlots[room] = {};
 
-//Extract pure timetable data from the scrapped timetable data not containing any null time slots
-function extractActualTimetable(timetable) {
-  const transformedTimetable = {};
-  for (const degree in timetable) {
-    const degreeDays = timetable[degree];
-
-    let hasValidDays = false;
-    const transformedDegree = {};
-
-    for (const day of degreeDays) {
-      const transformedDay = {};
-      const timeSlots = Object.keys(day).filter((key) => key !== "Day");
-
-      let hasValidSlots = false;
-      for (const slot of timeSlots) {
-        if (day[slot]) {
-          transformedDay[slot] = day[slot];
-          hasValidSlots = true;
-        }
-      }
-
-      if (hasValidSlots) {
-        transformedDegree[day.Day] = transformedDay;
-        hasValidDays = true;
-      }
-    }
-
-    if (hasValidDays) {
-      transformedTimetable[degree] = transformedDegree;
-    }
-  }
-
-  return Object.entries(transformedTimetable).map(([degree, schedule]) => ({
-    _id: degree,
-    schedule,
-  }));
-}
-
-// Extract the list of classrooms from the timetable data
-function extractClassrooms(timetable) {
-  let classrooms = [];
-  for (const degree in timetable) {
-    const degreeDays = timetable[degree];
-    for (const day of degreeDays) {
-      const timeSlots = Object.values(day).filter(
-        (slot) => slot && slot.classRoom
+    for (const day in freeSlotsByRoom[room]) {
+      freeRoomSlots[room][day] = allTimeSlots.filter(
+        (slot) => !freeSlotsByRoom[room][day].includes(slot)
       );
-      for (const slot of timeSlots) {
-        classrooms.push(slot.classRoom);
+    }
+  }
+
+  return freeRoomSlots;
+}
+
+// Organizes the free slots by day
+function organizeFreeSlotsByDay(freeSlotsByRoom) {
+  const organizedSlots = {};
+
+  for (const room in freeSlotsByRoom) {
+    for (const day in freeSlotsByRoom[room]) {
+      if (!organizedSlots[day]) {
+        organizedSlots[day] = {};
+      }
+
+      if (!organizedSlots[day][room]) {
+        organizedSlots[day][room] = freeSlotsByRoom[room][day];
       }
     }
   }
-  classrooms = [...new Set(classrooms)];
-  return new Array(new Object({ _id: "classrooms", classrooms }));
+  // Remove rooms with empty arrays
+  for (const day in organizedSlots) {
+    for (const room in organizedSlots[day]) {
+      if (organizedSlots[day][room].length === 0) {
+        delete organizedSlots[day][room];
+      }
+    }
+  }
+
+  return organizedSlots;
+}
+
+// Sorts the free slots data by day and room
+function sortFreeSlotsData(data) {
+  const sortedData = {};
+
+  // Sort days of the week in order (Monday to Friday)
+  const sortedDays = Object.keys(data).sort((a, b) => {
+    const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    return daysOrder.indexOf(a) - daysOrder.indexOf(b);
+  });
+
+  for (const day of sortedDays) {
+    sortedData[day] = {};
+
+    // Sort room names alphabetically within each day
+    const roomsData = data[day];
+    const sortedRooms = Object.keys(roomsData).sort();
+
+    for (const room of sortedRooms) {
+      sortedData[day][room] = roomsData[room];
+    }
+  }
+  return sortedData;
 }
 
 //export the functions to be used in other files
 module.exports = {
   extractInfo,
-  extractTeacherSchedule,
-  extractSubjectData,
-  extractClassrooms,
-  extractActualTimetable,
+  findFreeSlots,
   extractTimetableData,
+  organizeFreeSlotsByDay,
+  sortFreeSlotsData,
 };
 
 /*
