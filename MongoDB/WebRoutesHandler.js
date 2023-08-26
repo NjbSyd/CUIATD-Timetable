@@ -57,7 +57,7 @@ const getSubjectSchedule = async (req, res) => {
             },
             {
                 $group: {
-                    _id: "$class_name",
+                    _id: "$class_room",
                     teacher: { $first: "$teacher" },
                     subject: { $first: "$subject" },
                 },
@@ -87,18 +87,20 @@ const getSubjectSchedule = async (req, res) => {
 const getClassSchedule = async (req, res) => {
     try {
 
+        const { className } = req.params
+
         const response = await TimeTable.aggregate([
             {
-                $match: { class_name: req.params.className },
+                $match: { class_name: className },
             },
             {
                 $group: {
                     _id: "$day",
-                    day_schedule: { $push: "$$ROOT" }, // Create an array of day schedules
+                    day_schedule: { $push: "$$ROOT" },
                 },
             },
             {
-$sort: { timeSlot: 1 },
+                $sort: { time_slot: 1 }, // Corrected field name here
             },
             {
                 $group: {
@@ -106,7 +108,7 @@ $sort: { timeSlot: 1 },
                     days: {
                         $push: {
                             k: "$_id", // Use day name as key
-                            v: "$day_schedule", // Use day_schedule as value
+                            v: "$day_schedule",
                         },
                     },
                 },
@@ -117,7 +119,9 @@ $sort: { timeSlot: 1 },
                 },
             },
         ]);
-        if (!response) {
+
+
+        if (!response || response.length === 0) {
             return res.status(404).json({ message: "No data found" });
         }
 
@@ -157,10 +161,57 @@ const getClassRoomSchedule = async (req, res) => {
     }
 };
 
+
+
+
+
+const getFreeSlots = async (req, res) => {
+    try {
+        const response = await TimeTable.find({ day: req.params.day });
+        if (!response) {
+            return res.status(404).json({ message: "No data found" });
+        }
+        const allSlotsinRoom = [
+            "08:00 to 09:30",
+            "09:40 to 11:10",
+            "11:20 to 12:50",
+            "13:40 to 15:10",
+            "15:20 to 16:50",
+            "17:00 to 18:30",
+            "18:30 to 20:00",
+            "20:00 to 21:30"
+        ];
+
+
+        const bookedTimeSlots = {};
+        for (const entry of response) {
+            const { class_room, time_slot } = entry;
+            if (!bookedTimeSlots[class_room]) {
+                bookedTimeSlots[class_room] = [];
+            }
+            bookedTimeSlots[class_room].push(time_slot);
+        }
+        const freeRoomSlots = {};
+        for (const room in bookedTimeSlots) {
+            freeRoomSlots[room] = allSlotsinRoom.filter(
+                (timeSlot) => !bookedTimeSlots[room].includes(timeSlot)
+            );
+        }
+        res.status(200).json(freeRoomSlots);
+
+    } catch (error) {
+        return res.status(500).json({ message: "Internal server error" });
+    }
+
+
+}
+
 module.exports = {
     getDropdownData,
     getTeacherSchedule,
     getSubjectSchedule,
     getClassSchedule,
     getClassRoomSchedule,
+    getFreeSlots
+
 };
