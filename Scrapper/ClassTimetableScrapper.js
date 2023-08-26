@@ -2,7 +2,6 @@ const { chromium } = require("playwright");
 const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
 const { extractInfo } = require("../Functions/DataManipulation");
 const cheerio = require("cheerio");
-
 const scrapClassTimetable = async (classes = []) => {
   let timeTables = {};
   try {
