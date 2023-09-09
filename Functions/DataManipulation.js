@@ -31,12 +31,12 @@ function extractTimetableData(timetableData) {
           const teacher = details["teacher"];
 
           const extractedObject = {
-            class_name: class_name,
-            day: day,
-            time_slot: timeSlot,
-            subject: subject,
-            class_room: classRoom,
-            teacher: teacher,
+            class_name: cleanup(class_name),
+            day: cleanup(day),
+            time_slot: cleanup(timeSlot),
+            subject: cleanup(subject),
+            class_room: cleanup(classRoom),
+            teacher: cleanup(teacher),
           };
           extractedData.push(extractedObject);
         }
@@ -167,4 +167,13 @@ function extractInfo(str) {
   let teacher = info[2].split("<b>")[1].split("</b>")[0];
   teacher = teacher.trim();
   return { subject, classRoom, teacher };
+}
+
+// Helper function to clean up the input fields from the html tags, special characters and extra spaces.
+function cleanup(inputString) {
+  return inputString
+    .replace(/<\/?[^>]+(>|$)/g, "")
+    .replace(/&[^;]+;/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }

@@ -1,10 +1,10 @@
 const fs = require("fs");
 
-exports.storeLogs = (isError, errorMessage) => {
+exports.storeLogs = (isError, message) => {
   try {
     const log = `${
       isError ? "Failure" : "Success"
-    }: ${new Date()}: ${errorMessage}\n`;
+    }: ${new Date()}: ${message}\n`;
     fs.appendFileSync("./Scheduler/cronjob-logs.txt", log);
   } catch (error) {
     console.log(error);
