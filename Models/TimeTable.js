@@ -34,12 +34,12 @@ const timeTableSchema = new mongoose.Schema({
     default: 1.0,
   },
 
-  // "class_name": "RMB 5M",
-  // "day": "Friday",
-  // "time_slot": "11:40 to 12:25",
-  // "subject": "Issues in Brand Management",
-  // "class_room": "A220",
-  // "teacher": " Dr. Mohammad Ali"
+  // class_name: "RMB 5M",
+  // day: "Friday",
+  // time_slot: "11:40 to 12:25",
+  // subject: "Issues in Brand Management",
+  // class_room: "A220",
+  // teacher: " Dr. Mohammad Ali",
 });
 
 const TimeTable = mongoose.model("TimeTable", timeTableSchema);

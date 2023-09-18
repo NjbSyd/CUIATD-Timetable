@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "setup": "npm install && npx playwright install && npx playwright install-deps",
-    "keepRunning": "nodemon index.js"
+    "keepRunning": "nodemon index.js --ignore Logs/"
   },
   "keywords": [],
   "author": "",

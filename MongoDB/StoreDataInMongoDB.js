@@ -1,5 +1,5 @@
 const TimeTable = require("../Models/TimeTable");
-const { storeLogs } = require("../Scheduler/StoreLogs");
+const { GetAllData } = require("./RequestHandler");
 
 const AddSchedule = async (schedule) => {
   try {
@@ -21,9 +21,6 @@ const AddSchedule = async (schedule) => {
         existingDocInDb.teacher !== schedule.teacher
       ) {
         needsUpdate = true;
-        console.log("Difference Found in: ", schedule.class_name);
-        console.log("Existing: ", existingDocInDb);
-        console.log("New: ", schedule);
       }
 
       if (needsUpdate) {
@@ -50,6 +47,40 @@ const AddSchedule = async (schedule) => {
   }
 };
 
+const RemoveOutdatedDocs = async (ActualTimetable) => {
+  const deletedDocs = [];
+  try {
+    const mongoDocs = await GetAllData();
+    for (const newDoc of ActualTimetable) {
+      const matchingDocIndex = mongoDocs.findIndex(
+        (doc) =>
+          doc.class_name === newDoc.class_name &&
+          doc.day === newDoc.day &&
+          doc.time_slot === newDoc.time_slot
+      );
+
+      // If a match is found, remove the document from both arrays
+      if (matchingDocIndex !== -1) {
+        mongoDocs.splice(matchingDocIndex, 1);
+      }
+    }
+
+    // Delete any remaining outdated documents from the database
+    for (const outdatedDoc of mongoDocs) {
+      await TimeTable.deleteOne({
+        class_name: outdatedDoc.class_name,
+        day: outdatedDoc.day,
+        time_slot: outdatedDoc.time_slot,
+      });
+      deletedDocs.push(outdatedDoc.class_name);
+    }
+    return deletedDocs;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   AddSchedule,
+  RemoveOutdatedDocs,
 };
