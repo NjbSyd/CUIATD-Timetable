@@ -2,6 +2,10 @@ const { chromium } = require("playwright");
 const CourseSemesterSectionScrapper = require("./ClassesListScrapper");
 const { extractInfo } = require("../Functions/DataManipulation");
 const cheerio = require("cheerio");
+
+/*
+ * Scrapes the timetable of the given classes from the website and returns an object containing the timetable of each class as an array of objects
+ * */
 const scrapClassTimetable = async (classes = []) => {
   let timeTables = {};
   try {
@@ -71,8 +75,7 @@ const scrapClassTimetable = async (classes = []) => {
     await browser.close();
     return timeTables;
   } catch (error) {
-    console.log(error);
-    return timeTables;
+    throw error;
   }
 };
 
