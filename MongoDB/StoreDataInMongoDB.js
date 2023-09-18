@@ -51,29 +51,23 @@ const RemoveOutdatedDocs = async (ActualTimetable) => {
   const deletedDocs = [];
   try {
     const mongoDocs = await GetAllData();
-    for (const newDoc of ActualTimetable) {
-      const matchingDocIndex = mongoDocs.findIndex(
-        (doc) =>
-          doc.class_name === newDoc.class_name &&
-          doc.day === newDoc.day &&
-          doc.time_slot === newDoc.time_slot
+    for (const mongoDoc of mongoDocs) {
+      const matchingDoc = ActualTimetable.find(
+        (newDoc) =>
+          newDoc.class_name === mongoDoc.class_name &&
+          newDoc.day === mongoDoc.day &&
+          newDoc.time_slot === mongoDoc.time_slot
       );
-
-      // If a match is found, remove the document from both arrays
-      if (matchingDocIndex !== -1) {
-        mongoDocs.splice(matchingDocIndex, 1);
+      if (!matchingDoc) {
+        await TimeTable.deleteOne({
+          class_name: mongoDoc.class_name,
+          day: mongoDoc.day,
+          time_slot: mongoDoc.time_slot,
+        });
+        deletedDocs.push(mongoDoc.class_name);
       }
     }
 
-    // Delete any remaining outdated documents from the database
-    for (const outdatedDoc of mongoDocs) {
-      await TimeTable.deleteOne({
-        class_name: outdatedDoc.class_name,
-        day: outdatedDoc.day,
-        time_slot: outdatedDoc.time_slot,
-      });
-      deletedDocs.push(outdatedDoc.class_name);
-    }
     return deletedDocs;
   } catch (error) {
     throw error;

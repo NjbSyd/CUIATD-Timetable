@@ -1,6 +1,9 @@
 const express = require("express");
+const compression = require("compression");
 const { GetAllData } = require("../MongoDB/RequestHandler");
 const timetableRouter = express.Router();
+
+timetableRouter.use(compression());
 
 timetableRouter.get("/", async (req, res) => {
   try {

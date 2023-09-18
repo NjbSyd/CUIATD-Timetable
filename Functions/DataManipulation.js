@@ -144,6 +144,30 @@ function sortFreeSlotsData(data) {
   return sortedData;
 }
 
+function removeLabData(jsonData) {
+  const result = {};
+
+  for (const day in jsonData) {
+    const dayData = jsonData[day];
+    const cleanedDayData = {};
+
+    for (const room in dayData) {
+      const roomNameNormalized = room.toLowerCase();
+      if (
+        !roomNameNormalized.includes("lab") &&
+        !roomNameNormalized.includes("(l)") &&
+        !roomNameNormalized.includes("lb")
+      ) {
+        cleanedDayData[room] = dayData[room];
+      }
+    }
+
+    result[day] = cleanedDayData;
+  }
+
+  return result;
+}
+
 //export the functions to be used in other files
 module.exports = {
   extractInfo,
@@ -151,6 +175,7 @@ module.exports = {
   extractTimetableData,
   organizeFreeSlotsByDay,
   sortFreeSlotsData,
+  removeLabData,
 };
 
 /*

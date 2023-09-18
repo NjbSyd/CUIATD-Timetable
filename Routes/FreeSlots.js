@@ -1,12 +1,16 @@
 const express = require("express");
 const freeSlotsRouter = express.Router();
 const { GetAllData } = require("../MongoDB/RequestHandler");
+const compression = require("compression");
 
 const {
   findFreeSlots,
   organizeFreeSlotsByDay,
   sortFreeSlotsData,
+  removeLabData,
 } = require("../Functions/DataManipulation");
+
+freeSlotsRouter.use(compression());
 
 freeSlotsRouter.get("/", async (req, res) => {
   try {
@@ -14,7 +18,8 @@ freeSlotsRouter.get("/", async (req, res) => {
     const freeSlots = findFreeSlots(response);
     const freeSlotsByDay = organizeFreeSlotsByDay(freeSlots);
     const sortedFreeSlotsByDay = sortFreeSlotsData(freeSlotsByDay);
-    res.status(200).json(sortedFreeSlotsByDay);
+    const cleanedFreeSlots = removeLabData(sortedFreeSlotsByDay);
+    res.status(200).json(cleanedFreeSlots);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
