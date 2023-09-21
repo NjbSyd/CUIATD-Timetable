@@ -130,4 +130,37 @@ body {
   }
 };
 
-module.exports = { getLogsHTML, storeLogs };
+function checkLatestLogForChanges(latestLog) {
+  const regex = /(Updated|New|Deleted): (\d+)/g;
+  let match;
+
+  while ((match = regex.exec(latestLog)) !== null) {
+    const count = parseInt(match[2], 10);
+    if (count > 0 && count !== 0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function getLatestLog() {
+  try {
+    const logsJSON = fs.readFileSync(logsFilePath);
+    const logs = JSON.parse(logsJSON);
+
+    const successLogs = logs["Success"];
+    const keys = Object.keys(successLogs);
+    const latestDateLog = successLogs[keys[keys.length - 1]];
+    const latestLog = latestDateLog[latestDateLog.length - 1];
+    return {
+      log: latestLog,
+      changed: checkLatestLogForChanges(latestLog),
+      date: keys[keys.length - 1],
+    };
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+module.exports = { getLogsHTML, storeLogs, getLatestLog };
