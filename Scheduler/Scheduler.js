@@ -14,7 +14,6 @@ const ExtractData = async () => {
     const newDocs = [];
     const nonUpdatedDocs = [];
     console.log("Scrapping Started");
-    storeLogs(false, `Scrapping Started`);
     const Timetables = await scrapClassTimetable();
     const ActualTimetable = extractTimetableData(Timetables);
     await connectToMongoDatabase();
@@ -30,8 +29,17 @@ const ExtractData = async () => {
       }
     });
     await Promise.all(promises);
-    storeLogs(
-      false,
+    if (
+      updatedDocs.length > 0 ||
+      newDocs.length > 0 ||
+      deletedDocs.length > 0
+    ) {
+      storeLogs(
+        false,
+        `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`
+      );
+    }
+    console.log(
       `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`
     );
   } catch (error) {
