@@ -1,5 +1,5 @@
 const express = require("express");
-const { getLogsHTML } = require("../Logs/StoreLogs");
+const { getLogsHTML, storeLogs } = require("../Logs/StoreLogs");
 const logsRouter = express.Router();
 
 logsRouter.get("/", async (req, res) => {
@@ -9,9 +9,9 @@ logsRouter.get("/", async (req, res) => {
       <!DOCTYPE html>
       ${logsHtml}
     `;
-
     res.send(htmlResponse);
   } catch (error) {
+    storeLogs(true, `Error in Logs ${error.message}`);
     res.status(500).json({ message: error.message });
   }
 });

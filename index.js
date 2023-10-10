@@ -15,6 +15,7 @@ app.use("/logs", require("./Routes/Logs"));
 app
   .listen(process.env.PORT || 3000, () => {
     console.log("Server Started on port 3000");
+    storeLogs(false, "Server Started on port 3000", "Normal");
   })
   .on("error", (error) => {
     console.log(error);
@@ -22,7 +23,10 @@ app
   });
 
 connectToMongoDatabase()
-  .then(() => console.log("Connected to MongoDB"))
+  .then(() => {
+    console.log("Connected to MongoDB");
+    storeLogs(false, "Connected to MongoDB", "Normal");
+  })
   .catch((e) => console.log(e));
 
 ScheduleCronJob();

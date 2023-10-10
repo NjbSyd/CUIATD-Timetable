@@ -1,6 +1,7 @@
 const express = require("express");
 const quotesRouter = express.Router();
 const quotes = require("../Data/Quotes.json");
+const { storeLogs } = require("../Logs/StoreLogs");
 quotesRouter.get("/", async (req, res) => {
   try {
     const response = [];
@@ -12,8 +13,14 @@ quotesRouter.get("/", async (req, res) => {
       }
       response.push(quotes[index]);
     }
+    storeLogs(
+      false,
+      `Quotes Requested from ${req.headers["user-agent"]}`,
+      "Request"
+    );
     res.status(200).json(response);
   } catch (error) {
+    storeLogs(true, `Error in Quotes ${error.message}`);
     res.status(500).json({ message: error.message });
   }
 });

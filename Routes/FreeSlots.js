@@ -9,6 +9,7 @@ const {
   sortFreeSlotsData,
   removeLabData,
 } = require("../Functions/DataManipulation");
+const { storeLogs } = require("../Logs/StoreLogs");
 
 freeSlotsRouter.use(compression());
 
@@ -19,8 +20,14 @@ freeSlotsRouter.get("/", async (req, res) => {
     const freeSlotsByDay = organizeFreeSlotsByDay(freeSlots);
     const sortedFreeSlotsByDay = sortFreeSlotsData(freeSlotsByDay);
     const cleanedFreeSlots = removeLabData(sortedFreeSlotsByDay);
+    storeLogs(
+      false,
+      `Free Slots Requested from ${req.headers["user-agent"]}`,
+      "Request"
+    );
     res.status(200).json(cleanedFreeSlots);
   } catch (error) {
+    storeLogs(true, `Error in FreeSlots ${error.message}`);
     res.status(500).json({ message: error.message });
   }
 });

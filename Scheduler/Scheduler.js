@@ -36,7 +36,14 @@ const ExtractData = async () => {
     ) {
       storeLogs(
         false,
-        `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`
+        `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`,
+        "Success"
+      );
+    } else {
+      storeLogs(
+        false,
+        `Scrapping completed Successfully! No changes found`,
+        "Normal"
       );
     }
     console.log(

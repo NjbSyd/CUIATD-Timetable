@@ -2,11 +2,11 @@ const fs = require("fs");
 
 const logsFilePath = `./Logs/logs.json`;
 
-const storeLogs = (isError, message) => {
+const storeLogs = (isError, message, type = "Normal") => {
   try {
-    const logType = isError ? "Failure" : "Success";
+    const logType = isError ? "Failure" : type;
     const logDate = new Date().toJSON().slice(0, 10);
-    const logTime = new Date().toLocaleTimeString(); // Add this line to get the current time
+    const logTime = new Date().toLocaleTimeString();
 
     const logData = `${logTime}: ${message}`;
 
@@ -44,7 +44,9 @@ const getLogsHTML = () => {
     const logs = JSON.parse(logsJSON);
 
     const successLogs = logs["Success"];
+    const noChangeLogs = logs["Normal"];
     const failureLogs = logs["Failure"];
+    const request = logs["Request"];
 
     const getLogHTML = (logs) => {
       return Object.entries(logs)
@@ -86,8 +88,24 @@ body {
     font-weight: bold;
 }
 
+.nochanges {
+    background-color: #f3f396;
+    border-radius: 5px;
+    padding: 5px;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
 .failure {
     background-color: #f39696;
+    border-radius: 5px;
+    padding: 5px;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
+.request{
+    background-color: #f396f3;
     border-radius: 5px;
     padding: 5px;
     color: #1e1e1e;
@@ -117,8 +135,12 @@ body {
 </style>
           </head>
         <body>
-          <h1 class="success">Success Logs</h1>
+          <h1 class="success">Scrapping Logs</h1>
           ${getLogHTML(successLogs)}
+          <h1 class="nochanges">Normal Logs</h1>
+          ${getLogHTML(noChangeLogs)}
+          <h1 class="request">Request Logs</h1>
+          ${getLogHTML(request)}
           <h1 class="failure">Failure Logs</h1>
           ${getLogHTML(failureLogs)}
         </body>
