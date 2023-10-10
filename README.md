@@ -16,7 +16,8 @@ Timetable Scrapper is a web scraping tool developed in Node.js that allows you t
 
 1. **Class List Retrieval**: Timetable Scrapper starts by retrieving the list of classes available in the "CUOnline" system. This is done using Playwright to navigate to the relevant page and collect the class data.
 
-2. **Timetable Extraction**: Once the class list is obtained, the tool iterates over each class, selects it in the "CUOnline" system, and retrieves the corresponding timetable. The timetable data is extracted using Cheerio to parse the HTML content of the timetable table.
+2. **Timetable Extraction**: Once the class list is obtained, the tool iterates over each class, selects it in the "CUOnline" system, and retrieves the corresponding timetable. The timetable data is extracted using Cheerio to parse 
+ the HTML content of the timetable table.
 
 3. **Data Manipulation**: After extracting the timetable data, it is further processed and formatted into a structured JSON representation. The final JSON object contains the timetable for each class, categorized by day and time slots.
 
