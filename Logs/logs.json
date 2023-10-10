@@ -1,5 +1,15 @@
 {
-  "Success": {},
+  "Success": {
+    "2023-09-21": [
+      "12:33:36 AM: Scrapping completed Successfully! Updated: 22, New: 1, Existing: 2588, Deleted: 1",
+      "3:33:41 AM: Scrapping completed Successfully! Updated: 0, New: 0, Existing: 2611, Deleted: 0",
+      "7:04:27 AM: Scrapping completed Successfully! Updated: 9, New: 14, Existing: 2600, Deleted: 2",
+      "12:03:42 PM: Scrapping completed Successfully! Updated: 20, New: 9, Existing: 2596, Deleted: 7",
+      "2:33:45 PM: Scrapping completed Successfully! Updated: 25, New: 1, Existing: 2599, Deleted: 1",
+      "11:57:40 PM: Scrapping completed Successfully! Updated: 0, New: 0, Existing: 2625, Deleted: 0",
+      "6:20:57 PM: Scrapping completed Successfully! Updated: 13, New: 0, Existing: 2612, Deleted: 0"
+    ]
+  },
   "Failure": {},
   "Normal": {
   },
