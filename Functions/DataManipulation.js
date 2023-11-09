@@ -48,17 +48,8 @@ function extractTimetableData(timetableData) {
 }
 
 // Finds the free slots in the timetable data
-function findFreeSlots(timetableData) {
-  const allTimeSlots = [
-    "08:00 to 09:30",
-    "09:40 to 11:10",
-    "11:20 to 12:50",
-    "13:40 to 15:10",
-    "15:20 to 16:50",
-    "17:00 to 18:30",
-    "18:30 to 20:00",
-    "20:00 to 21:30",
-  ];
+function findFreeSlots(timetableData, timeslots) {
+  const allTimeSlots = timeslots;
 
   const freeSlotsByRoom = {};
 

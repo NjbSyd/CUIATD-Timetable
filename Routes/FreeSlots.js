@@ -1,6 +1,9 @@
 const express = require("express");
 const freeSlotsRouter = express.Router();
-const { GetAllData } = require("../MongoDB/RequestHandler");
+const {
+  GetAllData,
+  GetDistinctFieldValues,
+} = require("../MongoDB/RequestHandler");
 const compression = require("compression");
 
 const {
@@ -15,8 +18,9 @@ freeSlotsRouter.use(compression());
 
 freeSlotsRouter.get("/", async (req, res) => {
   try {
+    const timeslots = await GetDistinctFieldValues("time_slot");
     const response = await GetAllData();
-    const freeSlots = findFreeSlots(response);
+    const freeSlots = findFreeSlots(response, timeslots);
     const freeSlotsByDay = organizeFreeSlotsByDay(freeSlots);
     const sortedFreeSlotsByDay = sortFreeSlotsData(freeSlotsByDay);
     const cleanedFreeSlots = removeLabData(sortedFreeSlotsByDay);

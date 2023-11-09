@@ -8,6 +8,15 @@ const GetAllData = async () => {
   }
 };
 
+const GetDistinctFieldValues = async (field) => {
+  try {
+    return await TimeTable.distinct(field);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   GetAllData,
+  GetDistinctFieldValues,
 };

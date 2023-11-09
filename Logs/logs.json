@@ -12,7 +12,48 @@
   },
   "Failure": {},
   "Normal": {
+    "2023-10-11": [
+      "6:09:54 PM: Server Started on port 3000",
+      "6:10:07 PM: Connected to MongoDB",
+      "6:11:32 PM: Server Started on port 3000",
+      "6:11:44 PM: Connected to MongoDB",
+      "6:19:32 PM: Server Started on port 3000",
+      "6:19:44 PM: Connected to MongoDB",
+      "6:31:59 PM: Server Started on port 3000",
+      "6:32:10 PM: Connected to MongoDB"
+    ],
+    "2023-10-27": [
+      "1:24:45 AM: Server Started on port 3000",
+      "1:24:46 AM: Connected to MongoDB"
+    ],
+    "2023-10-28": [
+      "4:50:44 PM: Server Started on port 3000",
+      "4:50:55 PM: Connected to MongoDB"
+    ],
+    "2023-11-09": [
+      "10:15:11 PM: Server Started on port 3000",
+      "10:15:12 PM: Connected to MongoDB",
+      "10:15:32 PM: Server Started on port 3000",
+      "10:15:33 PM: Connected to MongoDB"
+    ]
   },
   "Request": {
+    "2023-10-11": [
+      "6:10:50 PM: Timetable Requested from okhttp/4.9.2",
+      "6:11:34 PM: Should Update Requested from okhttp/4.9.2",
+      "6:11:52 PM: Should Update Requested from okhttp/4.9.2",
+      "6:19:39 PM: Timetable Requested from okhttp/4.9.2",
+      "6:32:11 PM: Timetable Requested from okhttp/4.9.2",
+      "6:32:21 PM: Free Slots Requested from okhttp/4.9.2",
+      "7:19:41 PM: Timetable Requested from okhttp/4.9.2"
+    ],
+    "2023-10-27": [
+      "1:29:26 AM: Timetable Requested from okhttp/4.9.2",
+      "1:29:42 AM: Should Update Requested from okhttp/4.9.2",
+      "1:30:04 AM: Timetable Requested from okhttp/4.9.2"
+    ],
+    "2023-11-09": [
+      "10:15:42 PM: Free Slots Requested from Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    ]
   }
 }
