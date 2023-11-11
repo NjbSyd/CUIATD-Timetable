@@ -2,11 +2,12 @@ const express = require("express");
 const compression = require("compression");
 const { GetAllData } = require("../MongoDB/RequestHandler");
 const { getLatestLog, storeLogs } = require("../Logs/StoreLogs");
+const verifyAppVersion = require("../middleware/appVersion");
 const timetableRouter = express.Router();
 
 timetableRouter.use(compression());
 
-timetableRouter.get("/", async (req, res) => {
+timetableRouter.get("/", verifyAppVersion, async (req, res) => {
   try {
     storeLogs(
       false,
@@ -23,12 +24,13 @@ timetableRouter.get("/", async (req, res) => {
 
 timetableRouter.post("/shouldUpdate", async (req, res) => {
   try {
+    const { lastSyncDate, version } = req.body;
     storeLogs(
       false,
-      `Should Update Requested from ${req.headers["user-agent"]}`,
+      `Should Update Requested from ${req.headers["user-agent"]}, app version: ${version}`,
       "Request"
     );
-    const { lastSyncDate } = req.body;
+
     if (!lastSyncDate || lastSyncDate === "") {
       res
         .status(200)
