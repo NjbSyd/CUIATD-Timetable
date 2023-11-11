@@ -1,24 +1,57 @@
-# Timetable Scrapper
+# CUI ATD Companion Backend
 
 ## Overview
 
-Timetable Scrapper is a web scraping tool developed in Node.js that allows you to extract course timetables from the "CUOnline" system of the Abbottabad Campus of the Comsats University Islamabad (CUI). This tool provides a convenient and automated way to collect timetable data for various classes and store it in MongoDB.
+CUI ATD Companion Backend is a Node.js-based application responsible for supporting the functionality of the CUI Unofficial Timetable App. This backend component handles data retrieval, processing, storage, and the crucial task of web scraping to ensure a seamless experience for users navigating their timetables.
 
 ## Technologies Used
 
-- [Node.js](https://nodejs.org/en/docs): The core of the application is built on Node.js, which allows us to perform server-side web scraping and automation tasks efficiently.
+- [Node.js](https://nodejs.org/en/docs): The backbone of the backend, enabling server-side execution for efficient data handling.
 
-- [Playwright](https://playwright.dev/docs/intro): Playwright is powerful headless browser automation library used to interact with web pages, navigate through the website, and extract data.
+- [Express](https://expressjs.com/): Express is employed as the web application framework to streamline routing, middleware development, and facilitate data scraping.
 
-- [Cheerio](https://cheerio.js.org/docs/intro): Cheerio is a fast and flexible library for parsing and manipulating HTML content in the server environment, enabling easy data extraction from the scraped pages.
+- [MongoDB](https://docs.mongodb.com/): MongoDB serves as the database management system for storing and retrieving both scraped and non-scraped timetable data.
+
+- [Mongoose](https://mongoosejs.com/): Mongoose is used as an elegant MongoDB object modeling tool, providing a straightforward interface for interacting with the database.
+
+- [Playwright](https://playwright.dev/docs/intro): Playwright, a powerful headless browser automation library, is utilized for web scraping tasks, such as interacting with web pages and extracting data.
+
+- [Cheerio](https://cheerio.js.org/docs/intro): Cheerio, a fast and flexible HTML content parsing and manipulation library, facilitates easy extraction of data from scraped pages.
 
 ## How It Works
 
-1. **Class List Retrieval**: Timetable Scrapper starts by retrieving the list of classes available in the "CUOnline" system. This is done using Playwright to navigate to the relevant page and collect the class data.
+1. **Endpoint Handling**: The backend manages various endpoints to handle requests from the frontend of the CUI ATD Companion app.
 
-2. **Timetable Extraction**: Once the class list is obtained, the tool iterates over each class, selects it in the "CUOnline" system, and retrieves the corresponding timetable. The timetable data is extracted using Cheerio to parse 
- the HTML content of the timetable table.
+2. **Data Retrieval and Scraping**: It interacts with the database to retrieve timetable data requested by the frontend. Additionally, it uses Playwright to scrape data from the "CUOnline" system.
 
-3. **Data Manipulation**: After extracting the timetable data, it is further processed and formatted into a structured JSON representation. The final JSON object contains the timetable for each class, categorized by day and time slots.
+3. **Data Processing**: Upon retrieval, the data is processed as needed to ensure its compatibility with the frontend application.
 
-4. **Data Storage**: The extracted and processed timetable data is then stored in MongoDB.
+4. **Data Storage**: The backend is responsible for storing both scraped and non-scraped data in the MongoDB database.
+
+## Getting Started
+
+To set up the CUI ATD Companion Backend locally, follow these steps:
+
+1. Clone this repository to your local machine:
+
+    ```
+    git clone https://github.com/NjbSyd/CUI-ATD-Companion-Scrapper.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```
+    cd <directory-name>
+    ```
+
+3. Install the required dependencies and setup playwright:
+
+    ```
+    npm run setup
+    ```
+
+4. Start the backend server:
+
+    ```
+    node index.js
+    ```
