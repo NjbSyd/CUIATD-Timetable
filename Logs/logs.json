@@ -10,7 +10,11 @@
       "6:20:57 PM: Scrapping completed Successfully! Updated: 13, New: 0, Existing: 2612, Deleted: 0"
     ]
   },
-  "Failure": {},
+  "Failure": {
+    "2023-11-15": [
+      "9:25:17 AM: Error in Timetable Operation `timetables.find()` buffering timed out after 10000ms"
+    ]
+  },
   "Normal": {
     "2023-10-11": [
       "6:09:54 PM: Server Started on port 3000",
@@ -88,6 +92,17 @@
       "6:24:44 PM: Connected to MongoDB",
       "6:25:00 PM: Server Started on port 3000",
       "6:25:01 PM: Connected to MongoDB"
+    ],
+    "2023-11-15": [
+      "9:18:47 AM: Server Started on port 3000",
+      "9:22:44 AM: Server Started on port 3000",
+      "9:37:15 AM: Server Started on port 3000",
+      "9:39:52 AM: Server Started on port 3000",
+      "9:40:00 AM: Server Started on port 3000",
+      "9:40:04 AM: Server Started on port 3000",
+      "9:41:35 AM: Server Started on port 3000",
+      "9:43:11 AM: Server Started on port 3000",
+      "10:00:46 AM: Server Started on port 3000"
     ]
   },
   "Request": {
@@ -139,6 +154,9 @@
       "5:32:12 PM: Should Update Requested from okhttp/4.9.2, app version: 7.0.0",
       "5:32:51 PM: Should Update Requested from okhttp/4.9.2, app version: 7.0.0",
       "5:33:12 PM: Should Update Requested from okhttp/4.9.2, app version: 8.0.0"
+    ],
+    "2023-11-15": [
+      "9:25:06 AM: Timetable Requested from okhttp/4.9.2"
     ]
   }
 }

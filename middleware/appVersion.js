@@ -6,7 +6,8 @@ function verifyAppVersion(req, res, next) {
   //   console.log("Update Available");
   //   return res.status(200).json({
   //     title: "Update Needed",
-  //     message: "Please update the app to continue using it.",
+  //     message: "Please
+  //     update the app to continue using it.",
   //   });
   // }
   // console.log(req.query);
