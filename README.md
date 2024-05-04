@@ -1,5 +1,6 @@
-# CUI ATD Companion Backend
+# CUI ATD Companion Scrapper
 
+Goto [Front-End](https://github.com/NjbSyd/CUI-ATD-Companion) of this project.
 ## Overview
 
 CUI ATD Companion Backend is a Node.js-based application responsible for supporting the functionality of the CUI Unofficial Timetable App. This backend component handles data retrieval, processing, storage, and the crucial task of web scraping to ensure a seamless experience for users navigating their timetables.
