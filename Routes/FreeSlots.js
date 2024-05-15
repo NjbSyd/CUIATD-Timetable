@@ -13,11 +13,10 @@ const {
   removeLabData,
 } = require("../Functions/DataManipulation");
 const { storeLogs } = require("../Logs/StoreLogs");
-const verifyAppVersion = require("../middleware/appVersion");
 
 freeSlotsRouter.use(compression());
 
-freeSlotsRouter.get("/", verifyAppVersion, async (req, res) => {
+freeSlotsRouter.get("/", async (req, res) => {
   try {
     storeLogs(
       false,
