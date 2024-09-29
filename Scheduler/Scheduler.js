@@ -1,60 +1,114 @@
+const { prisma } = require("../prisma/index");
 const { storeLogs } = require("../Logs/StoreLogs");
 const { scrapClassTimetable } = require("../Scrapper/ClassTimetableScrapper");
-const cron = require("node-cron");
-const {
-  AddSchedule,
-  RemoveOutdatedDocs,
-} = require("../MongoDB/StoreDataInMongoDB");
 const { extractTimetableData } = require("../Functions/DataManipulation");
-const { connectToMongoDatabase } = require("../MongoDB/MongoConfig");
+const cron = require("node-cron");
 
 const ExtractData = async () => {
   try {
-    const updatedDocs = [];
-    const newDocs = [];
-    const nonUpdatedDocs = [];
-    console.log("Scrapping Started");
-    const Timetables = await scrapClassTimetable();
-    const ActualTimetable = extractTimetableData(Timetables);
-    await connectToMongoDatabase();
-    const deletedDocs = await RemoveOutdatedDocs(ActualTimetable);
-    const promises = ActualTimetable.map(async (schedule) => {
-      const { class_name, status } = await AddSchedule(schedule);
-      if (status === "Updated") {
-        updatedDocs.push(class_name);
-      } else if (status === "New") {
-        newDocs.push(class_name);
-      } else {
-        nonUpdatedDocs.push(class_name);
+    console.log("Scraping Started");
+    const timetables = await scrapClassTimetable();
+    const actualTimetable = extractTimetableData(timetables);
+
+    const result = await prisma.$transaction(async (prisma) => {
+      // Get existing records
+      const existingRecords = await prisma.timetable.findMany();
+
+      // Prepare data for batch operations
+      const toCreate = [];
+      const toUpdate = [];
+      const unchanged = [];
+
+      for (const schedule of actualTimetable) {
+        const existing = existingRecords.find(
+          (r) =>
+            r.class_name === schedule.class_name &&
+            r.day === schedule.day &&
+            r.time_slot === schedule.time_slot
+        );
+
+        if (!existing) {
+          toCreate.push(schedule);
+        } else if (
+          existing.subject !== schedule.subject ||
+          existing.class_room !== schedule.class_room ||
+          existing.teacher !== schedule.teacher
+        ) {
+          toUpdate.push({
+            ...schedule,
+            id: existing.id,
+            version: existing.version + 0.1,
+          });
+        } else {
+          unchanged.push(schedule.class_name);
+        }
       }
+
+      // Perform batch operations
+      const created = await prisma.timetable.createMany({
+        data: toCreate,
+        skipDuplicates: true,
+      });
+
+      const updated = await Promise.all(
+        toUpdate.map((record) =>
+          prisma.timetable.update({
+            where: { id: record.id },
+            data: record,
+          })
+        )
+      );
+
+      // Remove outdated records
+      const toDelete = existingRecords.filter(
+        (record) =>
+          !actualTimetable.some(
+            (schedule) =>
+              schedule.class_name === record.class_name &&
+              schedule.day === record.day &&
+              schedule.time_slot === record.time_slot
+          )
+      );
+
+      const deleted = await prisma.timetable.deleteMany({
+        where: {
+          id: {
+            in: toDelete.map((record) => record.id),
+          },
+        },
+      });
+
+      return {
+        created: created.count,
+        updated: updated.length,
+        unchanged: unchanged.length,
+        deleted: deleted.count,
+      };
     });
-    await Promise.all(promises);
-    if (
-      updatedDocs.length > 0 ||
-      newDocs.length > 0 ||
-      deletedDocs.length > 0
-    ) {
-      storeLogs(
-        false,
-        `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`,
-        "Success"
-      );
-    } else {
-      storeLogs(
-        false,
-        `Scrapping completed Successfully! No changes found`,
-        "Normal"
-      );
-    }
-    console.log(
-      `Scrapping completed Successfully! Updated: ${updatedDocs.length}, New: ${newDocs.length}, Existing: ${nonUpdatedDocs.length}, Deleted: ${deletedDocs.length}`
+
+    // Log results
+    const message =
+      result.created > 0 || result.updated > 0 || result.deleted > 0
+        ? `Scraping completed Successfully! Updated: ${result.updated}, New: ${result.created}, Existing: ${result.unchanged}, Deleted: ${result.deleted}`
+        : `Scraping completed Successfully! No changes found`;
+
+    storeLogs(
+      false,
+      message,
+      result.created > 0 || result.updated > 0 || result.deleted > 0
+        ? "Success"
+        : "Normal"
     );
+
+    console.log(message);
   } catch (error) {
     storeLogs(true, error.message);
+    console.error("Error in ExtractData:", error);
   }
 };
 
 const ScheduleCronJob = () => {
+  cron.schedule("05 04 * * *", ExtractData); //5:30 AM PST
   cron.schedule("30 00 * * *", ExtractData); //5:30 AM PST
   cron.schedule("30 03 * * *", ExtractData); //8:30 AM PST
   cron.schedule("00 07 * * *", ExtractData); //12:00 PM PST

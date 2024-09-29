@@ -9,7 +9,7 @@ const cheerio = require("cheerio");
 const scrapClassTimetable = async (classes = []) => {
   let timeTables = {};
   try {
-    const browser = await chromium.launch({ headless: true }); // Use headless: false if you want to see the browser UI
+    const browser = await chromium.launch({ headless: false }); // Use headless: false if you want to see the browser UI
     const page = await browser.newPage();
 
     await page.goto("https://cuonline.cuiatd.edu.pk/Timetable/Timetable.aspx");

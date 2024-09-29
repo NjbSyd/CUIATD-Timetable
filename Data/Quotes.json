@@ -1,202 +1,402 @@
 [
-    {
-        "id": 1,
-        "quote": "Coding is like solving a puzzle where the pieces are created by you, the rules are flexible, and the reward is a working masterpiece. 😄🔧🧩"
-    },
-    {
-        "id": 2,
-        "quote": "In the world of programming, every bug you squash is a step closer to becoming a debugging ninja. 🐞🥋🦸‍♂️"
-    },
-    {
-        "id": 3,
-        "quote": "Programming: Where 'Hello World' is the beginning of an epic journey, not just a simple phrase. 👋🌍🚀"
-    },
-    {
-        "id": 4,
-        "quote": "Life is short, write code that sparks joy and makes error messages that make you laugh. ⚡️😄💻"
-    },
-    {
-        "id": 5,
-        "quote": "Remember, even the mightiest software was once just a 'Ctrl' and 'C' away from being a catastrophe. ⚡️🖥️😅"
-    },
-    {
-        "id": 6,
-        "quote": "Coding is the art of turning caffeine into code, and bugs into features. ☕💻🐞"
-    },
-    {
-        "id": 7,
-        "quote": "In the world of coding, even a typo can lead to an adventure. 🖋️🌍🚀"
-    },
-    {
-        "id": 8,
-        "quote": "Programmers never die, they just go offline. 💾👾🕶️"
-    },
-    {
-        "id": 9,
-        "quote": "Coding is like a language: If you make a mistake, you can't blame the computer, you have to take responsibility. 💬💻🤖"
-    },
-    {
-        "id": 10,
-        "quote": "The best code is like a joke – it needs no explanation. 😄📝💡"
-    },
-    {
-        "id": 11,
-        "quote": "To succeed in programming, you need patience, persistence, and a touch of caffeine. ⏳☕💻"
-    },
-    {
-        "id": 12,
-        "quote": "Programming is like gardening – you plant seeds of logic and watch elegant solutions bloom. 🌱🌼💡"
-    },
-    {
-        "id": 13,
-        "quote": "Coding is the closest thing we have to a superpower. We build worlds with our words. 💻🌎🔮"
-    },
-    {
-        "id": 14,
-        "quote": "In coding, the only limit is your imagination... and the occasional missing semicolon. 🧠💡🚧"
-    },
-    {
-        "id": 15,
-        "quote": "Programming is the art of telling a computer what to do until it finally does it. 🖥️🤖🎨"
-    },
-    {
-        "id": 16,
-        "quote": "The only time 'Success' comes before 'Work' is in the dictionary and in programming tutorials. 💼💻📚"
-    },
-    {
-        "id": 17,
-        "quote": "Behind every great program is a person who thinks they can make it better. 🙋‍♂️🛠️🚀"
-    },
-    {
-        "id": 18,
-        "quote": "Debugging is like detective work, following clues, unraveling mysteries, and solving puzzles. 🕵️‍♀️🔍🧩"
-    },
-    {
-        "id": 19,
-        "quote": "The difference between a novice programmer and an experienced one is the ability to Google effectively. 🌐🔍💡"
-    },
-    {
-        "id": 20,
-        "quote": "Code is like humor. When you have to explain it, it's usually not that good. 😄🤖📝"
-    },
-    {
-        "id": 21,
-        "quote": "Coding is like a superpower; with the right syntax, you can make your ideas come to life. 💪💻🚀"
-    },
-    {
-        "id": 22,
-        "quote": "Behind every '404 Not Found' error, there's a programmer who is very much found and very much tired. 🤦‍♂️🔗🌐"
-    },
-    {
-        "id": 23,
-        "quote": "Debugging is like being the detective in a crime movie where you're also the murderer. 🕵️‍♂️🔍🐛"
-    },
-    {
-        "id": 24,
-        "quote": "Coding: Where every problem you solve today becomes the feature you take pride in tomorrow. 💻🛠️🎉"
-    },
-    {
-        "id": 25,
-        "quote": "They say programming is like riding a bike, but the bike is on fire, you're on fire, everything is on fire, and you're in hell. 🔥🚴‍♂️💻"
-    },
-    {
-        "id": 26,
-        "quote": "Java is to JavaScript what car is to Carpet. - Chris Heilmann"
-    },
-    {
-        "id": 27,
-        "quote": "If at first you don't succeed, call it version 1.0. - Unknown"
-    },
-    {
-        "id": 28,
-        "quote": "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25. - Unknown"
-    },
-    {
-        "id": 29,
-        "quote": "I'm not lazy, I'm just on energy-saving mode. - Unknown"
-    },
-    {
-        "id": 30,
-        "quote": "Code like no one is watching, because in reality, they're all trying to figure out what you just wrote. 😄💻👀"
-    },
-    {
-        "id": 31,
-        "quote": "In a world full of code, be the bug that makes everyone smile. 🐞😃🌍"
-    },
-    {
-        "id": 32,
-        "quote": "Coding is a mix of logic, creativity, and endless cups of coffee. ☕🔮🧠"
-    },
-    {
-        "id": 33,
-        "quote": "A programmer's day: coffee > code > error > repeat. ☕💻🤯"
-    },
-    {
-        "id": 34,
-        "quote": "Debugging: Finding a needle in a haystack while wearing a blindfold. 🔍🐮🤷‍♂️"
-    },
-    {
-        "id": 35,
-        "quote": "Coding is not just about making computers understand, it's about making magic happen. ✨💻🎩"
-    },
-    {
-        "id": 36,
-        "quote": "In the world of coding, 'impossible' is just an exception waiting to be caught. 🚫🧨📛"
-    },
-    {
-        "id": 37,
-        "quote": "Life is short, make it meaningful; code is long, make it elegant. ⏳📜🔮"
-    },
-    {
-        "id": 38,
-        "quote": "Programming is about turning problems into possibilities, and syntax into solutions. 💡💻🌟"
-    },
-    {
-        "id": 39,
-        "quote": "Coding: Where 'Why is this not working?' transforms into 'Eureka!' 💡💥💻"
-    },
-    {
-        "id": 40,
-        "quote": "The best code is like a good joke – it lands well and leaves a lasting impression. 😄💬🖥️"
-    },
-    {
-        "id": 41,
-        "quote": "Coding is a symphony of logic, where every bug is a note waiting to be orchestrated into harmony. 🎵🔍💻"
-    },
-    {
-        "id": 42,
-        "quote": "A programmer's keyboard is a canvas where syntax becomes poetry and bugs become abstract art. 🎨💻🪲"
-    },
-    {
-        "id": 43,
-        "quote": "Coding: Where 'Hello World' is the opening act to an epic saga of function and form. 👋🌍🚀"
-    },
-    {
-        "id": 44,
-        "quote": "In the realm of programming, algorithms are the spells we cast to control the digital realm. 🧙‍♂️🌐🔮"
-    },
-    {
-        "id": 45,
-        "quote": "Code is like a treasure map, and debugging is the quest to find the chest of working code. 🗺️🧭💻"
-    },
-    {
-        "id": 46,
-        "quote": "Programming is where creativity merges with logic to create a symphony of digital innovation. 🎶🧠💡"
-    },
-    {
-        "id": 47,
-        "quote": "Coding is like constructing a skyscraper of logic, one line at a time, with bugs as the construction workers. 🏗️🐞💻"
-    },
-    {
-        "id": 48,
-        "quote": "Every line of code is a brushstroke in the masterpiece of software, where every bug is a chance to remix the art. 🎨🔧📝"
-    },
-    {
-        "id": 49,
-        "quote": "Programming is a puzzle where missing semicolons are the missing pieces, and debugging is the quest for completion. 🧩🔍💻"
-    },
-    {
-        "id": 50,
-        "quote": "In the realm of coding, a '404 Not Found' is just a cryptic message from a digital ghost. 👻🔍🌐"
-    }
+  {
+    "id": 1,
+    "quote": "Coding is like solving a puzzle where the pieces are created by you, the rules are flexible, and the reward is a working masterpiece. 😄🔧🧩"
+  },
+  {
+    "id": 2,
+    "quote": "In the world of programming, every bug you squash is a step closer to becoming a debugging ninja. 🐞🥋🦸‍♂️"
+  },
+  {
+    "id": 3,
+    "quote": "Programming: Where 'Hello World' is the beginning of an epic journey, not just a simple phrase. 👋🌍🚀"
+  },
+  {
+    "id": 4,
+    "quote": "Life is short, write code that sparks joy and makes error messages that make you laugh. ⚡️😄💻"
+  },
+  {
+    "id": 5,
+    "quote": "Remember, even the mightiest software was once just a 'Ctrl' and 'C' away from being a catastrophe. ⚡️🖥️😅"
+  },
+  {
+    "id": 6,
+    "quote": "Coding is the art of turning caffeine into code, and bugs into features. ☕💻🐞"
+  },
+  {
+    "id": 7,
+    "quote": "In the world of coding, even a typo can lead to an adventure. 🖋️🌍🚀"
+  },
+  {
+    "id": 8,
+    "quote": "Programmers never die, they just go offline. 💾👾🕶️"
+  },
+  {
+    "id": 9,
+    "quote": "Coding is like a language: If you make a mistake, you can't blame the computer, you have to take responsibility. 💬💻🤖"
+  },
+  {
+    "id": 10,
+    "quote": "The best code is like a joke - it needs no explanation. 😄📝💡"
+  },
+  {
+    "id": 11,
+    "quote": "To succeed in programming, you need patience, persistence, and a touch of caffeine. ⏳☕💻"
+  },
+  {
+    "id": 12,
+    "quote": "Programming is like gardening - you plant seeds of logic and watch elegant solutions bloom. 🌱🌼💡"
+  },
+  {
+    "id": 13,
+    "quote": "Coding is the closest thing we have to a superpower. We build worlds with our words. 💻🌎🔮"
+  },
+  {
+    "id": 14,
+    "quote": "In coding, the only limit is your imagination... and the occasional missing semicolon. 🧠💡🚧"
+  },
+  {
+    "id": 15,
+    "quote": "Programming is the art of telling a computer what to do until it finally does it. 🖥️🤖🎨"
+  },
+  {
+    "id": 16,
+    "quote": "The only time 'Success' comes before 'Work' is in the dictionary and in programming tutorials. 💼💻📚"
+  },
+  {
+    "id": 17,
+    "quote": "Behind every great program is a person who thinks they can make it better. 🙋‍♂️🛠️🚀"
+  },
+  {
+    "id": 18,
+    "quote": "Debugging is like detective work, following clues, unraveling mysteries, and solving puzzles. 🕵️‍♀️🔍🧩"
+  },
+  {
+    "id": 19,
+    "quote": "The difference between a novice programmer and an experienced one is the ability to Google effectively. 🌐🔍💡"
+  },
+  {
+    "id": 20,
+    "quote": "Code is like humor. When you have to explain it, it's usually not that good. 😄🤖📝"
+  },
+  {
+    "id": 21,
+    "quote": "Coding is like a superpower; with the right syntax, you can make your ideas come to life. 💪💻🚀"
+  },
+  {
+    "id": 22,
+    "quote": "Behind every '404 Not Found' error, there's a programmer who is very much found and very much tired. 🤦‍♂️🔗🌐"
+  },
+  {
+    "id": 23,
+    "quote": "Debugging is like being the detective in a crime movie where you're also the murderer. 🕵️‍♂️🔍🐛"
+  },
+  {
+    "id": 24,
+    "quote": "Coding: Where every problem you solve today becomes the feature you take pride in tomorrow. 💻🛠️🎉"
+  },
+  {
+    "id": 25,
+    "quote": "They say programming is like riding a bike, but the bike is on fire, you're on fire, everything is on fire, and you're in hell. 🔥🚴‍♂️💻"
+  },
+  {
+    "id": 26,
+    "quote": "Java is to JavaScript what car is to Carpet. - Chris Heilmann"
+  },
+  {
+    "id": 27,
+    "quote": "If at first you don't succeed, call it version 1.0. - Unknown"
+  },
+  {
+    "id": 28,
+    "quote": "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25. - Unknown"
+  },
+  {
+    "id": 29,
+    "quote": "I'm not lazy, I'm just on energy-saving mode. - Unknown"
+  },
+  {
+    "id": 30,
+    "quote": "Code like no one is watching, because in reality, they're all trying to figure out what you just wrote. 😄💻👀"
+  },
+  {
+    "id": 31,
+    "quote": "In a world full of code, be the bug that makes everyone smile. 🐞😃🌍"
+  },
+  {
+    "id": 32,
+    "quote": "Coding is a mix of logic, creativity, and endless cups of coffee. ☕🔮🧠"
+  },
+  {
+    "id": 33,
+    "quote": "A programmer's day: coffee > code > error > repeat. ☕💻🤯"
+  },
+  {
+    "id": 34,
+    "quote": "Debugging: Finding a needle in a haystack while wearing a blindfold. 🔍🐮🤷‍♂️"
+  },
+  {
+    "id": 35,
+    "quote": "Coding is not just about making computers understand, it's about making magic happen. ✨💻🎩"
+  },
+  {
+    "id": 36,
+    "quote": "In the world of coding, 'impossible' is just an exception waiting to be caught. 🚫🧨📛"
+  },
+  {
+    "id": 37,
+    "quote": "Life is short, make it meaningful; code is long, make it elegant. ⏳📜🔮"
+  },
+  {
+    "id": 38,
+    "quote": "Programming is about turning problems into possibilities, and syntax into solutions. 💡💻🌟"
+  },
+  {
+    "id": 39,
+    "quote": "Coding: Where 'Why is this not working?' transforms into 'Eureka!' 💡💥💻"
+  },
+  {
+    "id": 40,
+    "quote": "The best code is like a good joke - it lands well and leaves a lasting impression. 😄💬🖥️"
+  },
+  {
+    "id": 41,
+    "quote": "Coding is a symphony of logic, where every bug is a note waiting to be orchestrated into harmony. 🎵🔍💻"
+  },
+  {
+    "id": 42,
+    "quote": "A programmer's keyboard is a canvas where syntax becomes poetry and bugs become abstract art. 🎨💻🪲"
+  },
+  {
+    "id": 43,
+    "quote": "Coding: Where 'Hello World' is the opening act to an epic saga of function and form. 👋🌍🚀"
+  },
+  {
+    "id": 44,
+    "quote": "In the realm of programming, algorithms are the spells we cast to control the digital realm. 🧙‍♂️🌐🔮"
+  },
+  {
+    "id": 45,
+    "quote": "Code is like a treasure map, and debugging is the quest to find the chest of working code. 🗺️🧭💻"
+  },
+  {
+    "id": 46,
+    "quote": "Programming is where creativity merges with logic to create a symphony of digital innovation. 🎶🧠💡"
+  },
+  {
+    "id": 47,
+    "quote": "Coding is like constructing a skyscraper of logic, one line at a time, with bugs as the construction workers. 🏗️🐞💻"
+  },
+  {
+    "id": 48,
+    "quote": "Every line of code is a brushstroke in the masterpiece of software, where every bug is a chance to remix the art. 🎨🔧📝"
+  },
+  {
+    "id": 49,
+    "quote": "Programming is a puzzle where missing semicolons are the missing pieces, and debugging is the quest for completion. 🧩🔍💻"
+  },
+  {
+    "id": 50,
+    "quote": "In the realm of coding, a '404 Not Found' is just a cryptic message from a digital ghost. 👻🔍🌐"
+  },
+  {
+    "id": 51,
+    "quote": "Programming is the closest thing we have to a superpower; with the right syntax, you can create entire worlds. 💥💻🌍"
+  },
+  {
+    "id": 52,
+    "quote": "Coding is like a never-ending game of chess; each move must be calculated and strategic. ♟️💻🧠"
+  },
+  {
+    "id": 53,
+    "quote": "In the realm of code, every error is a lesson in disguise. Embrace the bugs and learn. 🐛📚🔍"
+  },
+  {
+    "id": 54,
+    "quote": "Programming: where 'It works on my machine' is a universal excuse. 💻🔄🌐"
+  },
+  {
+    "id": 55,
+    "quote": "Code is a conversation between the programmer and the computer. Speak clearly and listen carefully. 💬🤖📝"
+  },
+  {
+    "id": 56,
+    "quote": "Writing code is like crafting a story; each function and variable adds to the narrative. 📜💻✨"
+  },
+  {
+    "id": 57,
+    "quote": "In programming, you’re not just solving problems; you’re creating solutions that didn’t exist before. 💡🔧🚀"
+  },
+  {
+    "id": 58,
+    "quote": "Coding is a blend of logic and creativity; it's where artistry meets engineering. 🎨🛠️💡"
+  },
+  {
+    "id": 59,
+    "quote": "Every line of code is a step on the path to creating something extraordinary. 🏞️💻✨"
+  },
+  {
+    "id": 60,
+    "quote": "Debugging is like an Easter egg hunt; finding the bug is half the fun. 🐣🔍💻"
+  },
+  {
+    "id": 61,
+    "quote": "A good programmer is someone who looks at a problem and says, 'Challenge accepted!' 💪💻🎯"
+  },
+  {
+    "id": 62,
+    "quote": "Programming is the ultimate form of self-expression. Code your way to greatness. ✨💻🎨"
+  },
+  {
+    "id": 63,
+    "quote": "The beauty of coding is in its imperfections; each bug is a chance to improve and learn. 🐞💡🔧"
+  },
+  {
+    "id": 64,
+    "quote": "Writing code is like sculpting; you start with a block of ideas and carve out the final masterpiece. 🗿💻🎨"
+  },
+  {
+    "id": 65,
+    "quote": "Programming is not about getting things right the first time; it’s about perseverance and iteration. 🔄💻🚀"
+  },
+  {
+    "id": 66,
+    "quote": "In the world of code, there are no limits, only challenges waiting to be conquered. 🏆💻🌟"
+  },
+  {
+    "id": 67,
+    "quote": "Code is a puzzle where every piece fits together to create a coherent picture. 🧩💻🖼️"
+  },
+  {
+    "id": 68,
+    "quote": "A programmer’s job is to solve problems and create opportunities, one line of code at a time. 🔍💡💻"
+  },
+  {
+    "id": 69,
+    "quote": "Programming is like gardening; you plant the seeds of logic and nurture them into a flourishing solution. 🌱💻🌸"
+  },
+  {
+    "id": 70,
+    "quote": "Every bug fixed is a victory; celebrate each small win on your coding journey. 🎉💻🏅"
+  },
+  {
+    "id": 71,
+    "quote": "Coding is the art of turning coffee into code and dreams into reality. ☕💭💻"
+  },
+  {
+    "id": 72,
+    "quote": "Programming: where every challenge is an opportunity to grow and every solution is a triumph. 🌟💻🏆"
+  },
+  {
+    "id": 73,
+    "quote": "A great programmer is someone who sees every problem as an opportunity to innovate. 💡💻🚀"
+  },
+  {
+    "id": 74,
+    "quote": "Coding is a dance between logic and creativity; find your rhythm and make magic happen. 💃💻🎩"
+  },
+  {
+    "id": 75,
+    "quote": "In the world of software development, every line of code tells a story waiting to be uncovered. 📖💻🔍"
+  },
+  {
+    "id": 76,
+    "quote": "Programming is like building a bridge between ideas and reality; each line of code is a step towards connection. 🌉💻💡"
+  },
+  {
+    "id": 77,
+    "quote": "Debugging is the process of refining your creation, making it better, stronger, and more resilient. 🛠️💻🏆"
+  },
+  {
+    "id": 78,
+    "quote": "In coding, every challenge is a chance to innovate and every bug is a lesson in disguise. 🔄💡🔍"
+  },
+  {
+    "id": 79,
+    "quote": "Programming is about turning abstract concepts into tangible solutions. 💭💻✨"
+  },
+  {
+    "id": 80,
+    "quote": "A line of code is like a brushstroke; it adds to the overall picture of your software masterpiece. 🎨💻🖼️"
+  },
+  {
+    "id": 81,
+    "quote": "Code is like a puzzle that requires patience, creativity, and a bit of stubbornness to solve. 🧩💻💡"
+  },
+  {
+    "id": 82,
+    "quote": "The joy of programming comes from overcoming challenges and seeing your ideas come to life. 🎉💻🚀"
+  },
+  {
+    "id": 83,
+    "quote": "In coding, every line of code is a step towards creating something new and exciting. 🌟💻🎨"
+  },
+  {
+    "id": 84,
+    "quote": "The thrill of programming lies in the journey from concept to creation, and the satisfaction of a job well done. 🚀💻🎉"
+  },
+  {
+    "id": 85,
+    "quote": "Coding is an adventure where every bug is a plot twist and every solution is a triumph. 📖💻🏆"
+  },
+  {
+    "id": 86,
+    "quote": "In the world of programming, the only constant is change; adapt and thrive with every new challenge. 🌍💻🔄"
+  },
+  {
+    "id": 87,
+    "quote": "Programming is the art of crafting logic into elegant solutions; let your creativity shine through. 🎨💻💡"
+  },
+  {
+    "id": 88,
+    "quote": "Every great software starts with a single line of code; nurture it and watch it grow. 🌱💻🌟"
+  },
+  {
+    "id": 89,
+    "quote": "Coding is a blend of precision and creativity; balance both to create something truly remarkable. ⚖️💻✨"
+  },
+  {
+    "id": 90,
+    "quote": "In the coding world, every bug is a chance to improve and every solution is a step towards excellence. 🛠️💻🌟"
+  },
+  {
+    "id": 91,
+    "quote": "Programming is like exploring uncharted territory; each discovery brings new possibilities. 🌍💻🔍"
+  },
+  {
+    "id": 92,
+    "quote": "The beauty of code lies in its simplicity and elegance; strive to make your solutions clear and efficient. ✨💻🎨"
+  },
+  {
+    "id": 93,
+    "quote": "Coding is the process of translating ideas into algorithms and algorithms into reality. 💭💻🔢"
+  },
+  {
+    "id": 94,
+    "quote": "Every programmer faces setbacks; it’s the perseverance to overcome them that leads to success. 💪💻🌟"
+  },
+  {
+    "id": 95,
+    "quote": "Programming is like solving a complex puzzle; each piece of code is vital to the whole picture. 🧩💻🎯"
+  },
+  {
+    "id": 96,
+    "quote": "A great piece of code is like a well-told story; it’s engaging, clear, and leaves a lasting impression. 📖💻✨"
+  },
+  {
+    "id": 97,
+    "quote": "Coding is a journey where each bug you encounter helps you grow into a better programmer. 🌱💻🔧"
+  },
+  {
+    "id": 98,
+    "quote": "In programming, every solution is a result of countless iterations and creative problem-solving. 🔄💡💻"
+  },
+  {
+    "id": 99,
+    "quote": "Programming is a dance of logic and creativity; find your rhythm and let the code flow. 💃💻🎵"
+  },
+  {
+    "id": 100,
+    "quote": "Every line of code is a step towards building something amazing; keep moving forward and create greatness. 🚀💻🌟"
+  }
 ]

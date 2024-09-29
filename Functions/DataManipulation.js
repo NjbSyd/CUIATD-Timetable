@@ -29,6 +29,7 @@ function extractTimetableData(timetableData) {
           const subject = details["subject"];
           const classRoom = details["classRoom"];
           const teacher = details["teacher"];
+          const extra = details["extra"];
 
           const extractedObject = {
             class_name: cleanup(class_name),
@@ -37,6 +38,7 @@ function extractTimetableData(timetableData) {
             subject: cleanup(subject),
             class_room: cleanup(classRoom),
             teacher: cleanup(teacher),
+            extra,
           };
           extractedData.push(extractedObject);
         }
@@ -178,11 +180,17 @@ module.exports = {
 // Helper transform a valid timeSlot data to object
 function extractInfo(str) {
   let info = str.split("<br>");
-  let subject = info[0];
-  let classRoom = info[1];
-  let teacher = info[2].split("<b>")[1].split("</b>")[0];
-  teacher = teacher.trim();
-  return { subject, classRoom, teacher };
+  let subject = cleanup(info[0]).trim();
+  let classRoom = cleanup(info[1]).trim();
+  let teacher = cleanup(info[info.length - 1]).trim();
+  let extra = null;
+  if (info.length > 3) {
+    extra = info
+      .slice(2, info.length - 1)
+      .map(cleanup)
+      .join("\n");
+  }
+  return { subject, classRoom, teacher, extra };
 }
 
 // Helper function to clean up the input fields from the html tags, special characters and extra spaces.

@@ -1,162 +1,99 @@
 {
-  "Success": {
-    "2023-09-21": [
-      "12:33:36 AM: Scrapping completed Successfully! Updated: 22, New: 1, Existing: 2588, Deleted: 1",
-      "3:33:41 AM: Scrapping completed Successfully! Updated: 0, New: 0, Existing: 2611, Deleted: 0",
-      "7:04:27 AM: Scrapping completed Successfully! Updated: 9, New: 14, Existing: 2600, Deleted: 2",
-      "12:03:42 PM: Scrapping completed Successfully! Updated: 20, New: 9, Existing: 2596, Deleted: 7",
-      "2:33:45 PM: Scrapping completed Successfully! Updated: 25, New: 1, Existing: 2599, Deleted: 1",
-      "11:57:40 PM: Scrapping completed Successfully! Updated: 0, New: 0, Existing: 2625, Deleted: 0",
-      "6:20:57 PM: Scrapping completed Successfully! Updated: 13, New: 0, Existing: 2612, Deleted: 0"
+  "Normal": {
+    "2024-09-28": [
+      "1:39:53 AM: Server Started on port 3000",
+      "1:40:18 AM: Server Started on port 3000",
+      "1:40:32 AM: Server Started on port 3000",
+      "1:40:52 AM: Server Started on port 3000",
+      "3:13:42 AM: Server Started on port 3000",
+      "3:14:13 AM: Server Started on port 3000",
+      "3:14:25 AM: Server Started on port 3000",
+      "3:15:36 AM: Server Started on port 3000",
+      "3:15:40 AM: Server Started on port 3000",
+      "3:16:51 AM: Server Started on port 3000",
+      "3:18:29 AM: Server Started on port 3000",
+      "3:18:35 AM: Server Started on port 3000",
+      "3:18:41 AM: Server Started on port 3000",
+      "3:18:48 AM: Server Started on port 3000",
+      "3:19:10 AM: Server Started on port 3000",
+      "3:27:16 AM: Server Started on port 3000",
+      "3:27:24 AM: Server Started on port 3000",
+      "3:32:52 AM: Server Started on port 3000",
+      "3:33:13 AM: Server Started on port 3000",
+      "3:33:26 AM: Server Started on port 3000",
+      "3:33:44 AM: Server Started on port 3000",
+      "3:34:38 AM: Server Started on port 3000",
+      "3:34:41 AM: Server Started on port 3000",
+      "3:35:01 AM: Server Started on port 3000",
+      "3:36:08 AM: Server Started on port 3000",
+      "3:36:25 AM: Server Started on port 3000",
+      "3:37:27 AM: Server Started on port 3000",
+      "3:37:58 AM: Server Started on port 3000",
+      "3:38:12 AM: Server Started on port 3000",
+      "3:43:07 AM: Server Started on port 3000",
+      "3:43:13 AM: Server Started on port 3000",
+      "3:44:36 AM: Server Started on port 3000",
+      "3:44:51 AM: Server Started on port 3000",
+      "3:44:54 AM: Server Started on port 3000",
+      "3:45:01 AM: Server Started on port 3000",
+      "3:45:06 AM: Server Started on port 3000",
+      "3:50:30 AM: Server Started on port 3000",
+      "3:50:44 AM: Server Started on port 3000",
+      "3:50:51 AM: Server Started on port 3000",
+      "3:51:11 AM: Server Started on port 3000",
+      "3:51:17 AM: Server Started on port 3000",
+      "3:51:32 AM: Server Started on port 3000",
+      "3:58:19 AM: Server Started on port 3000",
+      "4:03:51 AM: Server Started on port 3000",
+      "4:03:52 AM: Server Started on port 3000",
+      "4:04:04 AM: Server Started on port 3000"
     ]
   },
   "Failure": {
-    "2023-11-15": [
-      "9:25:17 AM: Error in Timetable Operation `timetables.find()` buffering timed out after 10000ms"
-    ]
-  },
-  "Normal": {
-    "2023-10-11": [
-      "6:09:54 PM: Server Started on port 3000",
-      "6:10:07 PM: Connected to MongoDB",
-      "6:11:32 PM: Server Started on port 3000",
-      "6:11:44 PM: Connected to MongoDB",
-      "6:19:32 PM: Server Started on port 3000",
-      "6:19:44 PM: Connected to MongoDB",
-      "6:31:59 PM: Server Started on port 3000",
-      "6:32:10 PM: Connected to MongoDB"
-    ],
-    "2023-10-27": [
-      "1:24:45 AM: Server Started on port 3000",
-      "1:24:46 AM: Connected to MongoDB"
-    ],
-    "2023-10-28": [
-      "4:50:44 PM: Server Started on port 3000",
-      "4:50:55 PM: Connected to MongoDB"
-    ],
-    "2023-11-09": [
-      "10:15:11 PM: Server Started on port 3000",
-      "10:15:12 PM: Connected to MongoDB",
-      "10:15:32 PM: Server Started on port 3000",
-      "10:15:33 PM: Connected to MongoDB"
-    ],
-    "2023-11-10": [
-      "8:34:25 PM: Server Started on port 3000",
-      "8:34:36 PM: Connected to MongoDB",
-      "8:39:32 PM: Server Started on port 3000",
-      "8:39:44 PM: Connected to MongoDB",
-      "8:40:03 PM: Server Started on port 3000",
-      "8:40:15 PM: Connected to MongoDB",
-      "8:43:37 PM: Server Started on port 3000",
-      "8:43:40 PM: Connected to MongoDB",
-      "8:43:42 PM: Server Started on port 3000",
-      "8:43:43 PM: Connected to MongoDB",
-      "8:45:53 PM: Server Started on port 3000",
-      "8:45:56 PM: Server Started on port 3000",
-      "8:45:57 PM: Connected to MongoDB",
-      "8:46:56 PM: Server Started on port 3000",
-      "8:46:57 PM: Connected to MongoDB",
-      "8:48:08 PM: Server Started on port 3000",
-      "8:48:10 PM: Connected to MongoDB",
-      "8:48:20 PM: Server Started on port 3000",
-      "8:48:22 PM: Connected to MongoDB",
-      "8:49:20 PM: Server Started on port 3000",
-      "8:49:22 PM: Connected to MongoDB",
-      "8:50:07 PM: Server Started on port 3000",
-      "8:50:09 PM: Connected to MongoDB",
-      "8:50:18 PM: Server Started on port 3000",
-      "8:50:20 PM: Connected to MongoDB",
-      "8:51:07 PM: Server Started on port 3000",
-      "8:51:09 PM: Connected to MongoDB",
-      "8:51:12 PM: Server Started on port 3000",
-      "8:51:16 PM: Connected to MongoDB",
-      "8:55:06 PM: Server Started on port 3000",
-      "8:55:08 PM: Connected to MongoDB"
-    ],
-    "2023-11-11": [
-      "5:15:41 PM: Server Started on port 3000",
-      "5:15:43 PM: Connected to MongoDB",
-      "5:19:16 PM: Server Started on port 3000",
-      "5:19:18 PM: Connected to MongoDB",
-      "5:19:34 PM: Server Started on port 3000",
-      "5:19:36 PM: Connected to MongoDB",
-      "5:20:36 PM: Server Started on port 3000",
-      "5:20:39 PM: Connected to MongoDB",
-      "5:21:30 PM: Server Started on port 3000",
-      "5:21:32 PM: Connected to MongoDB",
-      "5:31:21 PM: Server Started on port 3000",
-      "5:31:23 PM: Connected to MongoDB",
-      "5:31:38 PM: Server Started on port 3000",
-      "5:31:40 PM: Connected to MongoDB",
-      "6:24:42 PM: Server Started on port 3000",
-      "6:24:44 PM: Connected to MongoDB",
-      "6:25:00 PM: Server Started on port 3000",
-      "6:25:01 PM: Connected to MongoDB"
-    ],
-    "2023-11-15": [
-      "9:18:47 AM: Server Started on port 3000",
-      "9:22:44 AM: Server Started on port 3000",
-      "9:37:15 AM: Server Started on port 3000",
-      "9:39:52 AM: Server Started on port 3000",
-      "9:40:00 AM: Server Started on port 3000",
-      "9:40:04 AM: Server Started on port 3000",
-      "9:41:35 AM: Server Started on port 3000",
-      "9:43:11 AM: Server Started on port 3000",
-      "10:00:46 AM: Server Started on port 3000"
+    "2024-09-28": [
+      "3:17:18 AM: \nInvalid `prisma.timetable.create()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:38:30\n\n  35     return { class_name: schedule.class_name, status: \"Non Updated\" };\n  36   }\n  37 } else {\n→ 38   await prisma.timetable.create({\n         data: {\n           class_name: \"BBA 11A\",\n           day: \"Monday\",\n           time_slot: \"09:40 to 11:10\",\n           subject: \"Cost and Management Accounting\",\n           class_room: \"Z114(M)\",\n           teacher: \"Zafar Iqbal\",\n           extra: null,\n           __v: 0,\n           ~~~\n       ?   version?: Float\n         }\n       })\n\nUnknown argument `__v`. Did you mean `day`? Available options are marked with ?.",
+      "3:20:17 AM: \nInvalid `prisma.timetable.create()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:42:30\n\n  39   }\n  40 } else {\n  41   console.log(\"New Schedule Added\");\n→ 42   await prisma.timetable.create({\n         data: {\n           class_name: \"BBA 11A\",\n           day: \"Monday\",\n           time_slot: \"09:40 to 11:10\",\n           subject: \"Cost and Management Accounting\",\n           class_room: \"Z114(M)\",\n           teacher: \"Zafar Iqbal\",\n           extra: null,\n           __v: 0,\n           ~~~\n       ?   version?: Float\n         }\n       })\n\nUnknown argument `__v`. Did you mean `day`? Available options are marked with ?.",
+      "3:28:12 AM: \nInvalid `prisma.timetable.create()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:42:30\n\n  39   }\n  40 } else {\n  41   console.log(\"New Schedule Added\");\n→ 42   await prisma.timetable.create({\n         data: {\n           class_name: \"BBA 1A\",\n           day: \"Monday\",\n           time_slot: \"08:00 to 09:30\",\n           subject: \"Applications of Information and Communication Technologies\",\n           class_room: \"Computer LAB 4\",\n           teacher: \"Dr. Muhammad Shoaib Khaliq\",\n           extra: null,\n           __v: 0,\n           ~~~\n       ?   version?: Float\n         }\n       })\n\nUnknown argument `__v`. Did you mean `day`? Available options are marked with ?.",
+      "3:30:10 AM: \nInvalid `prisma.timetable.create()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:42:30\n\n  39   }\n  40 } else {\n  41   console.log(\"New Schedule Added\");\n→ 42   await prisma.timetable.create({\n         data: {\n           class_name: \"BBA 11A\",\n           day: \"Monday\",\n           time_slot: \"09:40 to 11:10\",\n           subject: \"Cost and Management Accounting\",\n           class_room: \"Z114(M)\",\n           teacher: \"Zafar Iqbal\",\n           extra: null,\n           __v: 0,\n           ~~~\n       ?   version?: Float\n         }\n       })\n\nUnknown argument `__v`. Did you mean `day`? Available options are marked with ?.",
+      "3:46:49 AM: \nInvalid `prisma.timetable.findFirst()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:5:52\n\n  2 \n  3 const AddSchedule = async (schedule) => {\n  4   try {\n→ 5     const existingDocInDb = await prisma.timetable.findFirst(\nTimed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 17)",
+      "3:53:21 AM: \nInvalid `prisma.timetable.findFirst()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:5:52\n\n  2 \n  3 const AddSchedule = async (schedule) => {\n  4   try {\n→ 5     const existingDocInDb = await prisma.timetable.findFirst(\nTimed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 17)",
+      "4:00:22 AM: \nInvalid `prisma.timetable.findFirst()` invocation in\n/Users/swipetech/Documents/GitHub/CUI-ATD-Companion-Scrapper/prisma/src/StoreDataInMongoDB.js:5:52\n\n  2 \n  3 const AddSchedule = async (schedule) => {\n  4   try {\n→ 5     const existingDocInDb = await prisma.timetable.findFirst(\nTimed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 17)"
     ]
   },
   "Request": {
-    "2023-10-11": [
-      "6:10:50 PM: Timetable Requested from okhttp/4.9.2",
-      "6:11:34 PM: Should Update Requested from okhttp/4.9.2",
-      "6:11:52 PM: Should Update Requested from okhttp/4.9.2",
-      "6:19:39 PM: Timetable Requested from okhttp/4.9.2",
-      "6:32:11 PM: Timetable Requested from okhttp/4.9.2",
-      "6:32:21 PM: Free Slots Requested from okhttp/4.9.2",
-      "7:19:41 PM: Timetable Requested from okhttp/4.9.2"
+    "2024-09-28": [
+      "3:22:30 AM: Timetable Requested from Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "4:07:05 AM: Timetable Requested from Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "4:07:14 AM: Free Slots Requested from Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "4:07:27 AM: Timetable Requested from Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "4:09:52 AM: Timetable Requested from okhttp/4.9.2",
+      "4:10:03 AM: Timetable Requested from okhttp/4.9.2",
+      "4:12:21 AM: Timetable Requested from okhttp/4.9.2",
+      "4:15:46 AM: Timetable Requested from okhttp/4.9.2",
+      "4:17:43 AM: Timetable Requested from okhttp/4.9.2",
+      "4:20:03 AM: Timetable Requested from okhttp/4.9.2",
+      "4:20:27 AM: Free Slots Requested from okhttp/4.9.2",
+      "4:26:59 AM: Timetable Requested from okhttp/4.9.2",
+      "4:32:53 AM: Timetable Requested from okhttp/4.9.2",
+      "4:33:25 AM: Timetable Requested from okhttp/4.9.2",
+      "4:34:18 AM: Should Update Requested from okhttp/4.9.2",
+      "4:34:41 AM: Should Update Requested from okhttp/4.9.2",
+      "4:35:08 AM: Should Update Requested from okhttp/4.9.2",
+      "4:35:21 AM: Should Update Requested from okhttp/4.9.2",
+      "4:36:19 AM: Should Update Requested from okhttp/4.9.2",
+      "4:45:33 AM: Should Update Requested from okhttp/4.9.2",
+      "4:49:11 AM: Should Update Requested from okhttp/4.9.2"
     ],
-    "2023-10-27": [
-      "1:29:26 AM: Timetable Requested from okhttp/4.9.2",
-      "1:29:42 AM: Should Update Requested from okhttp/4.9.2",
-      "1:30:04 AM: Timetable Requested from okhttp/4.9.2"
-    ],
-    "2023-11-09": [
-      "10:15:42 PM: Free Slots Requested from Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
-    ],
-    "2023-11-10": [
-      "8:41:25 PM: Should Update Requested from okhttp/4.9.2",
-      "8:42:33 PM: Free Slots Requested from okhttp/4.9.2,appVersion:8.0.0",
-      "8:43:56 PM: Should Update Requested from okhttp/4.9.2",
-      "8:44:02 PM: Free Slots Requested from okhttp/4.9.2, appVersion:8.0.0",
-      "8:51:48 PM: Should Update Requested from okhttp/4.9.2",
-      "8:54:22 PM: Should Update Requested from okhttp/4.9.2",
-      "8:55:15 PM: Should Update Requested from okhttp/4.9.2",
-      "8:56:29 PM: Should Update Requested from okhttp/4.9.2",
-      "8:57:12 PM: Should Update Requested from okhttp/4.9.2",
-      "8:58:14 PM: Should Update Requested from okhttp/4.9.2",
-      "8:58:46 PM: Should Update Requested from okhttp/4.9.2",
-      "8:59:32 PM: Should Update Requested from okhttp/4.9.2",
-      "8:59:40 PM: Should Update Requested from okhttp/4.9.2",
-      "8:59:46 PM: Should Update Requested from okhttp/4.9.2",
-      "9:00:32 PM: Should Update Requested from okhttp/4.9.2",
-      "9:00:40 PM: Should Update Requested from okhttp/4.9.2"
-    ],
-    "2023-11-11": [
-      "5:15:44 PM: Timetable Requested from okhttp/4.9.2",
-      "5:15:57 PM: Free Slots Requested from okhttp/4.9.2",
-      "5:16:11 PM: Free Slots Requested from okhttp/4.9.2",
-      "5:17:16 PM: Free Slots Requested from okhttp/4.9.2",
-      "5:17:48 PM: Free Slots Requested from okhttp/4.9.2",
-      "5:18:29 PM: Should Update Requested from okhttp/4.9.2",
-      "5:20:47 PM: Should Update Requested from okhttp/4.9.2",
-      "5:30:03 PM: Should Update Requested from okhttp/4.9.2",
-      "5:31:52 PM: Should Update Requested from okhttp/4.9.2, app version: 8.0.0",
-      "5:32:12 PM: Should Update Requested from okhttp/4.9.2, app version: 7.0.0",
-      "5:32:51 PM: Should Update Requested from okhttp/4.9.2, app version: 7.0.0",
-      "5:33:12 PM: Should Update Requested from okhttp/4.9.2, app version: 8.0.0"
-    ],
-    "2023-11-15": [
-      "9:25:06 AM: Timetable Requested from okhttp/4.9.2"
+    "2024-09-29": [
+      "5:09:44 AM: Should Update Requested from okhttp/4.9.2",
+      "5:10:25 AM: Should Update Requested from okhttp/4.9.2"
+    ]
+  },
+  "Success": {
+    "2024-09-28": [
+      "3:39:11 AM: Scrapping completed Successfully! Updated: 0, New: 85, Existing: 0, Deleted: 0",
+      "3:44:27 AM: Scrapping completed Successfully! Updated: 0, New: 218, Existing: 0, Deleted: 0",
+      "4:06:12 AM: Scraping completed Successfully! Updated: 0, New: 2273, Existing: 416, Deleted: 0"
     ]
   }
 }

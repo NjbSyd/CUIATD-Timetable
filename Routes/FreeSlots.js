@@ -3,7 +3,7 @@ const freeSlotsRouter = express.Router();
 const {
   GetAllData,
   GetDistinctFieldValues,
-} = require("../MongoDB/RequestHandler");
+} = require("../prisma/src/RequestHandler");
 const compression = require("compression");
 
 const {

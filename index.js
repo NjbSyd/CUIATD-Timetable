@@ -1,5 +1,8 @@
-const { connectToMongoDatabase } = require("./MongoDB/MongoConfig");
+require("dotenv").config({
+  path: "./.env",
+});
 const { storeLogs } = require("./Logs/StoreLogs");
+const { prisma } = require("./prisma");
 const ScheduleCronJob = require("./Scheduler/Scheduler");
 const express = require("express");
 
@@ -8,7 +11,6 @@ app.use(express.json());
 
 app.use("/timetable", require("./Routes/TimetableData"));
 app.use("/quotes", require("./Routes/Quotes"));
-app.use("/web", require("./Routes/WebRoutes"));
 app.use("/freeslots", require("./Routes/FreeSlots"));
 app.use("/logs", require("./Routes/Logs"));
 
@@ -16,17 +18,36 @@ app
   .listen(process.env.PORT || 3000, () => {
     console.log("Server Started on port 3000");
     storeLogs(false, "Server Started on port 3000", "Normal");
+    // insertData();
+    ScheduleCronJob();
   })
   .on("error", (error) => {
-    console.log(error);
+    console.log("🚀 ~ .on ~ error:", error);
     storeLogs(true, error.message);
   });
 
-connectToMongoDatabase()
-  .then(() => {
-    console.log("Connected to MongoDB");
-    storeLogs(false, "Connected to MongoDB", "Normal");
-  })
-  .catch((e) => console.log(e));
+// const insertData = async () => {
+//   try {
+//     const user = {
+//       class_name: "BBA 1A",
+//       day: "Monday",
+//       time_slot: "09:80 to 11:10",
+//       subject: "Applications of Information and Communication Technologies",
+//       class_room: "Computer LAB 4",
+//       teacher: "Faculty-02 EEE",
+//     };
 
-ScheduleCronJob();
+//     prisma.timetable
+//       .create({
+//         data: user,
+//       })
+//       .then((data) => {
+//         console.log("🚀 ~ insertData ~ data", data);
+//       })
+//       .catch((error) => {
+//         console.log("🚀 ~ insertData ~ error", error);
+//       });
+//   } catch (error) {
+//     console.log("🚀 ~ insertData ~ error", error);
+//   }
+// };

@@ -115,3 +115,4 @@ model
 .idea/cuiatd-timetable.iml
 .idea/modules.xml
 .idea/vcs.xml
+/prisma/migrations

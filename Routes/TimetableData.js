@@ -1,6 +1,6 @@
 const express = require("express");
 const compression = require("compression");
-const { GetAllData } = require("../MongoDB/RequestHandler");
+const { GetAllData } = require("../prisma/src/RequestHandler");
 const { getLatestLog, storeLogs } = require("../Logs/StoreLogs");
 const timetableRouter = express.Router();
 

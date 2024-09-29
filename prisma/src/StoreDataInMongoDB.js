@@ -1,45 +1,39 @@
-const TimeTable = require("../Models/TimeTable");
-const { GetAllData } = require("./RequestHandler");
+const { prisma } = require("../index");
 
 const AddSchedule = async (schedule) => {
   try {
-    const filter = {
-      class_name: schedule.class_name,
-      day: schedule.day,
-      time_slot: schedule.time_slot,
-    };
-
-    const existingDocInDb = await TimeTable.findOne(filter);
-
+    const existingDocInDb = await prisma.timetable.findFirst({
+      where: {
+        class_name: schedule.class_name,
+        day: schedule.day,
+        time_slot: schedule.time_slot,
+      },
+    });
     if (existingDocInDb) {
       // Check if any values have changed
-      let needsUpdate = false;
-
       if (
         existingDocInDb.subject !== schedule.subject ||
         existingDocInDb.class_room !== schedule.class_room ||
         existingDocInDb.teacher !== schedule.teacher
       ) {
-        needsUpdate = true;
-      }
-
-      if (needsUpdate) {
-        const update = {
-          $set: {
+        await prisma.timetable.update({
+          where: {
+            id: existingDocInDb.id,
+          },
+          data: {
             subject: schedule.subject,
             class_room: schedule.class_room,
             teacher: schedule.teacher,
-            __v: existingDocInDb.__v + 0.1,
           },
-        };
-        await TimeTable.updateOne(filter, update);
+        });
         return { class_name: schedule.class_name, status: "Updated" };
       } else {
         return { class_name: schedule.class_name, status: "Non Updated" };
       }
     } else {
-      const newSchedule = new TimeTable(schedule);
-      await newSchedule.save();
+      await prisma.timetable.create({
+        data: schedule,
+      });
       return { class_name: schedule.class_name, status: "New" };
     }
   } catch (error) {
@@ -50,24 +44,25 @@ const AddSchedule = async (schedule) => {
 const RemoveOutdatedDocs = async (ActualTimetable) => {
   const deletedDocs = [];
   try {
-    const mongoDocs = await GetAllData();
-    for (const mongoDoc of mongoDocs) {
+    const prismaDocs = await prisma.timetable.findMany();
+
+    for (const prismaDoc of prismaDocs) {
       const matchingDoc = ActualTimetable.find(
         (newDoc) =>
-          newDoc.class_name === mongoDoc.class_name &&
-          newDoc.day === mongoDoc.day &&
-          newDoc.time_slot === mongoDoc.time_slot
+          newDoc.class_name === prismaDoc.class_name &&
+          newDoc.day === prismaDoc.day &&
+          newDoc.time_slot === prismaDoc.time_slot
       );
+
       if (!matchingDoc) {
-        await TimeTable.deleteOne({
-          class_name: mongoDoc.class_name,
-          day: mongoDoc.day,
-          time_slot: mongoDoc.time_slot,
+        await prisma.timetable.delete({
+          where: {
+            id: prismaDoc.id,
+          },
         });
-        deletedDocs.push(mongoDoc.class_name);
+        deletedDocs.push(prismaDoc.class_name);
       }
     }
-
     return deletedDocs;
   } catch (error) {
     throw error;
